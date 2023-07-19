@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Utility Application</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="length_units">
+        <item>Meter (m)</item>
+        <item>Kilometer (km)</item>
+        <item>Centimeter (cm)</item>
+        <item>Millimeter (mm)</item>
+        <item>Inch (in)</item>
+        <item>Foot (ft)</item>
+        <item>Yard (yd)</item>
+        <item>Mile (mi)</item>
+    </string-array>
+
+    <string name="select_unit_from_prompt">Choose the unit to convert from:</string>
+
+
+</resources>

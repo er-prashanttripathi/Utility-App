@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".BmiCalculatorFragment"
+        android:orientation="vertical">
+
+        <!-- TODO: Update blank fragment layout -->
+       <LinearLayout
+           android:id="@+id/edtUnitFrom"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="horizontal">
+         <!--  <Spinner
+               android:id="@+id/spinnerUnitFrom"
+               android:layout_weight="1"
+               android:layout_width="0dp"
+               android:layout_height="wrap_content"
+               android:entries="@array/length_units"
+               />-->
+           <Spinner
+               android:id="@+id/spinnerUnitFrom"
+               android:layout_weight="1"
+               android:layout_width="0dp"
+               android:layout_height="wrap_content"
+
+               />
+         <EditText
+             android:layout_weight="1"
+             android:layout_width="0dp"
+             android:layout_height="wrap_content"
+             android:inputType="number"
+             android:hint="input 1"/>
+       </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+           <!-- <Spinner
+                android:id="@+id/spinnerUnitTo"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:entries="@array/length_units"
+                android:prompt="@string/select_unit_from_prompt" />-->
+            <Spinner
+                android:id="@+id/spinnerUnitTo"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+
+                android:prompt="@string/select_unit_from_prompt" />
+            <EditText
+                android:id="@+id/edtUnitTo"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:hint="input 2"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>

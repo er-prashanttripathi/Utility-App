@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/utilitynavgraph"
+    app:startDestination="@id/bmiCalculatorFragment">
+
+    <fragment
+        android:id="@+id/bmiCalculatorFragment"
+        android:name="com.example.utilityapplication.BmiCalculatorFragment"
+        android:label="BmiCalculatorFragment" />
+    <fragment
+        android:id="@+id/unitFragment"
+        android:name="com.example.utilityapplication.UnitFragment"
+        android:label="UnitFragment" >
+        <action
+            android:id="@+id/action_unitFragment_to_finalActivity"
+            app:destination="@id/finalActivity" />
+    </fragment>
+    <activity
+        android:id="@+id/finalActivity"
+        android:name="com.example.utilityapplication.FinalActivity"
+        android:label="FinalActivity" />
+    <activity
+        android:id="@+id/mainActivity"
+        android:name="com.example.utilityapplication.MainActivity"
+        android:label="MainActivity" />
+</navigation>
