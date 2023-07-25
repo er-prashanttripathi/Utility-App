@@ -1,237 +1,41 @@
-/*
 package com.example.utilityapplication
 
-import android.content.Context
-import android.widget.EditText
-
 object convertingLogic {
-
-    var fromvalue = ""
-    var tovalue = ""
-
-    //--------------------------------------------
-    fun resetUnits(value: Double, fromUnit: String, toUnit: String) {
-        when {
-            fromUnit == "Meter (m)" -> fromvalue = "m"
-            fromUnit == "Kilometer (km)" -> fromvalue = "km"
-            fromUnit == "Centimeter (cm)" -> fromvalue = "cm"
-            fromUnit == "Millimeter (mm)" -> fromvalue = "mm"
-            fromUnit == "Inch (in)" -> fromvalue = "in"
-            fromUnit == "Foot (ft)" -> fromvalue = "ft"
-            fromUnit == "Yard (yd)" -> fromvalue = "yd"
-            fromUnit == "Mile (mi)" -> fromvalue = "mi"
-
-            toUnit == "Meter (m)" -> tovalue = "m"
-            toUnit == "Kilometer (km)" -> tovalue = "km"
-            toUnit == "Centimeter (cm)" -> tovalue = "cm"
-            toUnit == "Millimeter (mm)" -> tovalue = "mm"
-            toUnit == "Inch (in)" -> tovalue = "in"
-            toUnit == "Foot (ft)" -> tovalue = "ft"
-            toUnit == "Yard (yd)" -> tovalue = "yd"
-            toUnit == "Mile (mi)" -> tovalue = "mi"
-        }
-        convertUnit(value, fromvalue, tovalue)
-    }
-
-    //---------------------------------------
-    fun convertUnit(value: Double, fromUnit: String, toUnit: String): Double {
-        return when {
-            // Length
-            fromUnit == "m" && toUnit == "cm" -> value * 100.0
-            fromUnit == "cm" && toUnit == "m" -> value / 100.0
-            fromUnit == "m" && toUnit == "km" -> value / 1000.0
-            fromUnit == "km" && toUnit == "m" -> value * 1000.0
-            fromUnit == "in" && toUnit == "cm" -> value * 2.54
-            fromUnit == "cm" && toUnit == "in" -> value / 2.54
-            // Add more length conversions here...
-
-            // Weight
-            fromUnit == "kg" && toUnit == "g" -> value * 1000.0
-            fromUnit == "g" && toUnit == "kg" -> value / 1000.0
-            fromUnit == "kg" && toUnit == "lb" -> value * 2.20462
-            fromUnit == "lb" && toUnit == "kg" -> value / 2.20462
-            fromUnit == "kg" && toUnit == "oz" -> value * 35.274
-            fromUnit == "oz" && toUnit == "kg" -> value / 35.274
-            // Add more weight conversions here...
-
-            // Temperature
-            fromUnit == "c" && toUnit == "f" -> (value * 9 / 5) + 32
-            fromUnit == "f" && toUnit == "c" -> (value - 32) * 5 / 9
-            fromUnit == "c" && toUnit == "k" -> value + 273.15
-            fromUnit == "k" && toUnit == "c" -> value - 273.15
-            // Add more temperature conversions here...
-
-            // Volume
-            // Add volume conversions here...
-
-            // Area
-            // Add area conversions here...
-
-            // Speed
-            // Add speed conversions here...
-
-            // Time
-            // Add time conversions here...
-
-            // Energy
-            // Add energy conversions here...
-
-            else ->
-                value - 273.15
-            // If no conversion is found, return the original value
-        }
-    }
-
-
-    //--------------------------------------------
-}
-*//*
-
-package com.example.utilityapplication
-
-import android.widget.EditText
-
-object convertingLogic {
+    var UnitType = ""
     var fromData: Double = 0.0
-    val Lengthunits = arrayOf(
-        "Meter (m)", "Kilometer (km)", "Centimeter (cm)", "Millimeter (mm)",
-        "Inch (in)", "Foot (ft)", "Yard (yd)", "Mile (mi)"
+    val AgeLimits = arrayOf(
+        "1 yr old", "2 yr old", "3 yr old", "4 yr old", "5 yr old",
+        "6 yr old", "7 yr old", "8 yr old", "9 yr old", "10 yr old",
+        "11 yr old", "12 yr old", "13 yr old", "14 yr old", "15 yr old",
+        "16 yr old", "17 yr old", "18 yr old", "19 yr old", "20 yr old",
+        "21 yr old", "22 yr old", "23 yr old", "24 yr old", "25 yr old",
+        "26 yr old", "27 yr old", "28 yr old", "29 yr old", "30 yr old",
+        "31 yr old", "32 yr old", "33 yr old", "34 yr old", "35 yr old",
+        "36 yr old", "37 yr old", "38 yr old", "39 yr old", "40 yr old",
+        "41 yr old", "42 yr old", "43 yr old", "44 yr old", "45 yr old",
+        "46 yr old", "47 yr old", "48 yr old", "49 yr old", "50 yr old",
+        "51 yr old", "52 yr old", "53 yr old", "54 yr old", "55 yr old",
+        "56 yr old", "57 yr old", "58 yr old", "59 yr old", "60 yr old",
+        "61 yr old", "62 yr old", "63 yr old", "64 yr old", "65 yr old",
+        "66 yr old", "67 yr old", "68 yr old", "69 yr old", "70 yr old",
+        "71 yr old", "72 yr old", "73 yr old", "74 yr old", "75 yr old",
+        "76 yr old", "77 yr old", "78 yr old", "79 yr old", "80 yr old",
+        "81 yr old", "82 yr old", "83 yr old", "84 yr old", "85 yr old",
+        "86 yr old", "87 yr old", "88 yr old", "89 yr old", "90 yr old",
+        "91 yr old", "92 yr old", "93 yr old", "94 yr old", "95 yr old",
+        "96 yr old", "97 yr old", "98 yr old", "99 yr old", "100 yr old",
+        "101 yr old", "102 yr old", "103 yr old", "104 yr old", "105 yr old",
+        "106 yr old", "107 yr old", "108 yr old", "109 yr old", "110 yr old",
+        "111 yr old", "112 yr old", "113 yr old", "114 yr old", "115 yr old",
+        "116 yr old", "117 yr old", "118 yr old", "119 yr old", "120 yr old"
     )
-    private val unitsMap = mapOf(
-        "Meter (m)" to "m",
-        "Kilometer (km)" to "km",
-        "Centimeter (cm)" to "cm",
-        "Millimeter (mm)" to "mm",
-        "Inch (in)" to "in",
-        "Foot (ft)" to "ft",
-        "Yard (yd)" to "yd",
-        "Mile (mi)" to "mi"
-    )
 
-    //--------------------------------------------
-    fun resetUnits(value: Double, fromUnit: String, toUnit: String): Double {
-        val fromValue = unitsMap[fromUnit]
-        val toValue = unitsMap[toUnit]
-
-        if (fromValue != null && toValue != null) {
-            return convertUnit(value, fromValue, toValue)
-        }
-
-        // If the conversion units are not recognized, return the original value
-        return value
-    }
-
-    //---------------------------------------
-    fun convertUnit(value: Double, fromUnit: String, toUnit: String): Double {
-        return when {
-            // Length
-            //-----------------------Meter----------------------
-            fromUnit == "m" && toUnit == "km" -> value / 1000.0
-            fromUnit == "m" && toUnit == "cm" -> value * 100.0
-            fromUnit == "m" && toUnit == "mm" -> value * 1000.0
-            fromUnit == "m" && toUnit == "in" -> value * 39.3701
-            fromUnit == "m" && toUnit == "ft" -> value / 3.281
-            fromUnit == "m" && toUnit == "yd" -> value * 1.094
-            fromUnit == "m" && toUnit == "mi" -> value / 1609
-            //-----------------------Kilo-Meter----------------------
-            fromUnit == "km" && toUnit == "m" -> value * 1000.0
-            fromUnit == "km" && toUnit == "cm" -> value * 100000.0
-            fromUnit == "km" && toUnit == "mm" -> value * 1000000.0
-            fromUnit == "km" && toUnit == "in" -> value * 39370.1
-            fromUnit == "km" && toUnit == "ft" -> value * 3281.0
-            fromUnit == "km" && toUnit == "yd" -> value * 1093.61
-            fromUnit == "km" && toUnit == "mi" -> value / 1.609
-            //-----------------------Centi-Meter----------------------
-            fromUnit == "cm" && toUnit == "m" -> value / 100.0
-            fromUnit == "cm" && toUnit == "km" -> value / 100000.0
-            fromUnit == "cm" && toUnit == "mm" -> value * 10.0
-            fromUnit == "cm" && toUnit == "in" -> value / 2.54
-            fromUnit == "cm" && toUnit == "ft" -> value * 30.48
-            fromUnit == "cm" && toUnit == "yd" -> value / 91.44
-            fromUnit == "cm" && toUnit == "mi" -> value / 160900
-            //-----------------------Milli-Meter----------------------
-            fromUnit == "mm" && toUnit == "m" -> value / 1000.0
-            fromUnit == "mm" && toUnit == "km" -> value / 1000000.0
-            fromUnit == "mm" && toUnit == "cm" -> value / 10.0
-            fromUnit == "mm" && toUnit == "in" -> value / 25.4
-            fromUnit == "mm" && toUnit == "ft" -> value / 304.8
-            fromUnit == "mm" && toUnit == "yd" -> value / 914.4
-            fromUnit == "mm" && toUnit == "mi" -> value / 1609000.0
-            //-----------------------Inch----------------------
-            fromUnit == "in" && toUnit == "m" -> value / 39.37
-            fromUnit == "in" && toUnit == "km" -> value * 1000
-            fromUnit == "in" && toUnit == "cm" -> value * 2.54
-            fromUnit == "in" && toUnit == "mm" -> value * 25.4
-            fromUnit == "in" && toUnit == "ft" -> value / 12.0
-            fromUnit == "in" && toUnit == "yd" -> value / 36.0
-            fromUnit == "in" && toUnit == "mi" -> value * 1.609
-            //-----------------------Foot----------------------
-            fromUnit == "ft" && toUnit == "m" -> value * 3.281
-            fromUnit == "ft" && toUnit == "km" -> value / 3281
-            fromUnit == "ft" && toUnit == "cm" -> value * 30.48
-            fromUnit == "ft" && toUnit == "mm" -> value * 304.8
-            fromUnit == "ft" && toUnit == "in" -> value * 12
-            fromUnit == "ft" && toUnit == "yd" -> value / 3.0
-            fromUnit == "ft" && toUnit == "mi" -> value / 5280.0
-            //-----------------------Yard----------------------
-            fromUnit == "yd" && toUnit == "m" -> value / 1.094
-            fromUnit == "yd" && toUnit == "km" -> value / 1094.0
-            fromUnit == "yd" && toUnit == "cm" -> value * 91.44
-            fromUnit == "yd" && toUnit == "mm" -> value * 914.4
-            fromUnit == "yd" && toUnit == "in" -> value * 36.0
-            fromUnit == "yd" && toUnit == "ft" -> value * 3.0
-            fromUnit == "yd" && toUnit == "mi" -> value / 1760.0
-
-//===================================================================================
-            // Add more length conversions here...
-
-            // Weight
-            fromUnit == "kg" && toUnit == "g" -> value * 1000.0
-            fromUnit == "kg" && toUnit == "lb" -> value * 2.20462
-            fromUnit == "kg" && toUnit == "oz" -> value * 35.274
-            fromUnit == "g" && toUnit == "kg" -> value / 1000.0
-            fromUnit == "lb" && toUnit == "kg" -> value / 2.20462
-            fromUnit == "oz" && toUnit == "kg" -> value / 35.274
-            // Add more weight conversions here...
-
-            // Temperature
-            fromUnit == "c" && toUnit == "f" -> (value * 9 / 5) + 32
-            fromUnit == "f" && toUnit == "c" -> (value - 32) * 5 / 9
-            fromUnit == "c" && toUnit == "k" -> value + 273.15
-            fromUnit == "k" && toUnit == "c" -> value - 273.15
-            // Add more temperature conversions here...
-
-            // Volume
-            // Add volume conversions here...
-
-            // Area
-            // Add area conversions here...
-
-            // Speed
-            // Add speed conversions here...
-
-            // Time
-            // Add time conversions here...
-
-            // Energy
-            // Add energy conversions here...
-
-            else -> value // If no conversion is found, return the original value
-        }
-    }
-
-}
-*/
-package com.example.utilityapplication
-
-object convertingLogic {
-    var fromData: Double = 0.0
-    val Lengthunits = arrayOf(
-        "Meter (m)", "Kilometer (km)", "Centimeter (cm)", "Millimeter (mm)",
-        "Inch (in)", "Foot (ft)", "Yard (yd)", "Mile (mi)"
-    )
     val WeightUnits = arrayOf(
         "Kilogram (kg)", "Gram (g)", "Milligram (mg)", "Pound (lb)", "Ounce (oz)"
+    )
+    val Lengthunits = arrayOf(
+        "Meter (m)", "Kilometer (km)", "Centimeter (cm)", "Millimeter (mm)",
+        "Inch (in)", "Foot (ft)", "Yard (yd)", "Mile (mi)"
     )
     val TemperatureUnits = arrayOf(
         "Celsius (°C)", "Fahrenheit (°F)", "Kelvin (K)"
@@ -241,8 +45,13 @@ object convertingLogic {
         "Gallon (gal)", "Quart (qt)", "Pint (pt)", "Fluid ounce (fl oz)"
     )
     val AreaUnits = arrayOf(
-        "Square meter (m²)", "Square kilometer (km²)", "Square centimeter (cm²)", "Square inch (in²)",
-        "Square foot (ft²)", "Acre (ac)", "Hectare (ha)"
+        "Square meter (m²)",
+        "Square kilometer (km²)",
+        "Square centimeter (cm²)",
+        "Square inch (in²)",
+        "Square foot (ft²)",
+        "Acre (ac)",
+        "Hectare (ha)"
     )
     val SpeedUnits = arrayOf(
         "Meter per second (m/s)", "Kilometer per hour (km/h)", "Mile per hour (mph)"
@@ -254,7 +63,9 @@ object convertingLogic {
         "Joule (J)", "Kilocalorie (kcal)", "Calorie (cal)"
     )
 
-    /*  private val unitsMap = mapOf(
+
+    val unitsMap = mapOf(
+        // Length
         "Meter (m)" to "m",
         "Kilometer (km)" to "km",
         "Centimeter (cm)" to "cm",
@@ -262,59 +73,48 @@ object convertingLogic {
         "Inch (in)" to "in",
         "Foot (ft)" to "ft",
         "Yard (yd)" to "yd",
-        "Mile (mi)" to "mi"
-    )*/
-  private val unitsMap = mapOf(
-      // Length
-      "Meter (m)" to "m",
-      "Kilometer (km)" to "km",
-      "Centimeter (cm)" to "cm",
-      "Millimeter (mm)" to "mm",
-      "Inch (in)" to "in",
-      "Foot (ft)" to "ft",
-      "Yard (yd)" to "yd",
-      "Mile (mi)" to "mi",
-      // Weight
-      "Kilogram (kg)" to "kg",
-      "Gram (g)" to "g",
-      "Milligram (mg)" to "mg",
-      "Pound (lb)" to "lb",
-      "Ounce (oz)" to "oz",
-      // Temperature
-      "Celsius (°C)" to "c",
-      "Fahrenheit (°F)" to "f",
-      "Kelvin (K)" to "k",
-      // Volume
-      "Liter (L)" to "L",
-      "Milliliter (mL)" to "mL",
-      "Cubic meter (m³)" to "m³",
-      "Cubic centimeter (cm³)" to "cm³",
-      "Gallon (gal)" to "gal",
-      "Quart (qt)" to "qt",
-      "Pint (pt)" to "pt",
-      "Fluid ounce (fl oz)" to "fl oz",
-      // Area
-      "Square meter (m²)" to "m²",
-      "Square kilometer (km²)" to "km²",
-      "Square centimeter (cm²)" to "cm²",
-      "Square inch (in²)" to "in²",
-      "Square foot (ft²)" to "ft²",
-      "Acre (ac)" to "ac",
-      "Hectare (ha)" to "ha",
-      // Speed
-      "Meter per second (m/s)" to "m/s",
-      "Kilometer per hour (km/h)" to "km/h",
-      "Mile per hour (mph)" to "mph",
-      // Time
-      "Second (s)" to "s",
-      "Minute (min)" to "min",
-      "Hour (hr)" to "hr",
-      "Day (day)" to "day",
-      // Energy
-      "Joule (J)" to "J",
-      "Kilocalorie (kcal)" to "kcal",
-      "Calorie (cal)" to "cal"
-  )
+        "Mile (mi)" to "mi",
+        // Weight
+        "Kilogram (kg)" to "kg",
+        "Gram (g)" to "g",
+        "Milligram (mg)" to "mg",
+        "Pound (lb)" to "lb",
+        "Ounce (oz)" to "oz",
+        // Temperature
+        "Celsius (°C)" to "c",
+        "Fahrenheit (°F)" to "f",
+        "Kelvin (K)" to "k",
+        // Volume
+        "Liter (L)" to "L",
+        "Milliliter (mL)" to "mL",
+        "Cubic meter (m³)" to "m³",
+        "Cubic centimeter (cm³)" to "cm³",
+        "Gallon (gal)" to "gal",
+        "Quart (qt)" to "qt",
+        "Pint (pt)" to "pt",
+        "Fluid ounce (fl oz)" to "fl oz",
+        // Area
+        "Square meter (m²)" to "m²",
+        "Square kilometer (km²)" to "km²",
+        "Square centimeter (cm²)" to "cm²",
+        "Square inch (in²)" to "in²",
+        "Square foot (ft²)" to "ft²",
+        "Acre (ac)" to "ac",
+        "Hectare (ha)" to "ha",
+        // Speed
+        "Meter per second (m/s)" to "m/s",
+        "Kilometer per hour (km/h)" to "km/h",
+        "Mile per hour (mph)" to "mph",
+        // Time
+        "Second (s)" to "s",
+        "Minute (min)" to "min",
+        "Hour (hr)" to "hr",
+        "Day (day)" to "day",
+        // Energy
+        "Joule (J)" to "J",
+        "Kilocalorie (kcal)" to "kcal",
+        "Calorie (cal)" to "cal"
+    )
 
 
     //--------------------------------------------
@@ -631,6 +431,21 @@ object convertingLogic {
             value * conversionFactor.toString().toDouble()
         } else {
             value // If no conversion is found, return the original value
+        }
+    }
+    //------------------------------------------------------------
+    fun getUnitArray(unitType: String): Array<String> {
+        return when (unitType) {
+            "length" -> Lengthunits
+            "weight" -> WeightUnits
+            "temperature" -> TemperatureUnits
+            "volume" -> VolumeUnits
+            "area" -> AreaUnits
+            "speed" -> SpeedUnits
+            "time" -> TimeUnits
+            "energy" -> EnergyUnits
+            "age" -> AgeLimits
+            else -> emptyArray()
         }
     }
 }

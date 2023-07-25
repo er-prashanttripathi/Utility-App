@@ -18,13 +18,7 @@
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
            android:orientation="horizontal">
-         <!--  <Spinner
-               android:id="@+id/spinnerUnitFrom"
-               android:layout_weight="1"
-               android:layout_width="0dp"
-               android:layout_height="wrap_content"
-               android:entries="@array/length_units"
-               />-->
+
            <Spinner
                android:id="@+id/spinnerUnitFrom"
                android:layout_weight="1"
@@ -33,7 +27,7 @@
 
                />
          <EditText
-             android:id="@+id/edtUnitFrom"
+             android:id="@+id/edtLength"
              android:layout_weight="1"
              android:layout_width="0dp"
              android:layout_height="wrap_content"
@@ -44,13 +38,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-           <!-- <Spinner
-                android:id="@+id/spinnerUnitTo"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:entries="@array/length_units"
-                android:prompt="@string/select_unit_from_prompt" />-->
+
             <Spinner
                 android:id="@+id/spinnerUnitTo"
                 android:layout_weight="1"
@@ -58,19 +46,76 @@
                 android:layout_height="wrap_content"
 
                 android:prompt="@string/select_unit_from_prompt" />
-            <TextView
-                android:id="@+id/edtUnitTo"
+            <EditText
+                android:id="@+id/edtWeight"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:inputType="number"
                 android:hint="input 2"/>
         </LinearLayout>
+        <LinearLayout
+            android:id="@+id/bmiagelayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Spinner
+                android:id="@+id/spinnerAge"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+
+                />
+
+            <TextView
+                android:id="@+id/edtAge"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="input 1"
+                android:inputType="number" />
+        </LinearLayout>
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center">
+            <RadioButton
+                android:id="@+id/radiomale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="24sp"
+                android:text="Male"/>
+            <RadioButton
+                android:id="@+id/radiofemale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="24sp"
+                android:text="Female"/>
+        </RadioGroup>
+
+
 <com.google.android.material.button.MaterialButton
     android:id="@+id/btnSubmit"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:text="submit"
     android:layout_margin="20dp"/>
+        <TextView
+            android:id="@+id/bmivalue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:textAlignment="center"
+            android:hint="Your BMI is"/>
+        <TextView
+            android:id="@+id/bmicategory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:textAlignment="center"
+            android:hint="Your BMI is"/>
     </LinearLayout>
 </layout>

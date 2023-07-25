@@ -9,19 +9,24 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.databinding.DataBindingUtil
+import com.example.utilityapplication.convertingLogic.Lengthunits
 import com.example.utilityapplication.convertingLogic.fromData
+import com.example.utilityapplication.convertingLogic.getUnitArray
+import com.example.utilityapplication.convertingLogic.unitsMap
 import com.example.utilityapplication.databinding.ActivityFinalBinding
 import com.example.utilityapplication.databinding.ActivityMainBinding
 
 class FinalActivity : AppCompatActivity() {
     private lateinit var binding: ActivityFinalBinding
+    val unitType = convertingLogic.UnitType
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding=DataBindingUtil.setContentView(this,R.layout.activity_final)
+
         val arrayAdapter = ArrayAdapter(
             this,
             android.R.layout.simple_spinner_dropdown_item,
-            convertingLogic.Lengthunits
+            getUnitArray(unitType)
         )
 
         binding.spinnerUnitFrom.adapter = arrayAdapter
@@ -35,7 +40,7 @@ class FinalActivity : AppCompatActivity() {
                     position: Int,
                     id: Long
                 ) {
-                    val selectedUnit = convertingLogic.Lengthunits[position]
+                    val selectedUnit = getUnitArray(unitType)[position]
                     binding.edtUnitFrom.hint = selectedUnit
                     Log.d("You clicked UnitFrom", "onItemSelected:$selectedUnit ")
                 }
@@ -53,10 +58,13 @@ class FinalActivity : AppCompatActivity() {
                     position: Int,
                     id: Long
                 ) {
-                    val selectedUnit = convertingLogic.Lengthunits[position]
+
+                    val selectedUnit = getUnitArray(unitType)[position]
                     binding.edtUnitTo.hint = selectedUnit
                     Log.d("You clicked UnitTo", "onItemSelected:$selectedUnit")
                 }
+
+
 
                 override fun onNothingSelected(parent: AdapterView<*>?) {
                     // Empty implementation
@@ -65,16 +73,19 @@ class FinalActivity : AppCompatActivity() {
 
         binding.btnSubmit.setOnClickListener {
             fromData = binding.edtUnitFrom.text.toString().toDouble()
-            if (fromData == null) {
+            if (fromData == 0.0) {
                 Toast.makeText(this, "Enter a valid number", Toast.LENGTH_SHORT).show()
-            } else {
-                val fromUnit = convertingLogic.Lengthunits[binding.spinnerUnitFrom.selectedItemPosition]
-                val toUnit = convertingLogic.Lengthunits[binding.spinnerUnitTo.selectedItemPosition]
-                val result = convertingLogic.resetUnits(fromData, fromUnit, toUnit)
+            }
+            else {
+                val fromUnit = getUnitArray(unitType)[binding.spinnerUnitFrom.selectedItemPosition]
+                val toUnit = getUnitArray(unitType)[binding.spinnerUnitTo.selectedItemPosition]
+                val result = convertingLogic.resetUnits(fromData, fromUnit, toUnit).toString()+ convertingLogic.unitsMap[toUnit].toString()
                 Log.d("You clicked Unit", "fromData:$fromData, fromUnit:$fromUnit, toUnit:$toUnit")
                 binding.edtUnitTo.setText(result.toString())
             }
         }
 
     }
+
+
 }
