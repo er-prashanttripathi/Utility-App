@@ -9,31 +9,33 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".BmiCalculatorFragment"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        tools:context=".BmiCalculatorFragment">
 
         <!-- TODO: Update blank fragment layout -->
-       <LinearLayout
+        <LinearLayout
 
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:orientation="horizontal">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-           <Spinner
-               android:id="@+id/spinnerUnitFrom"
-               android:layout_weight="1"
-               android:layout_width="0dp"
-               android:layout_height="wrap_content"
+            <Spinner
+                android:id="@+id/spinnerUnitFrom"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
 
-               />
-         <EditText
-             android:id="@+id/edtLength"
-             android:layout_weight="1"
-             android:layout_width="0dp"
-             android:layout_height="wrap_content"
-             android:inputType="number"
-             android:hint="input 1"/>
-       </LinearLayout>
+                />
+
+            <EditText
+                android:id="@+id/edtLength"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="input 1"
+                android:inputType="number" />
+        </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -41,19 +43,21 @@
 
             <Spinner
                 android:id="@+id/spinnerUnitTo"
-                android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
 
                 android:prompt="@string/select_unit_from_prompt" />
+
             <EditText
                 android:id="@+id/edtWeight"
-                android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:inputType="number"
-                android:hint="input 2"/>
+                android:layout_weight="1"
+                android:hint="input 2"
+                android:inputType="number" />
         </LinearLayout>
+
         <LinearLayout
             android:id="@+id/bmiagelayout"
             android:layout_width="match_parent"
@@ -78,44 +82,49 @@
         </LinearLayout>
 
         <RadioGroup
+            android:id="@+id/myradiogroup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_gravity="center">
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+
             <RadioButton
                 android:id="@+id/radiomale"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="24sp"
-                android:text="Male"/>
+                android:text="Male"
+                android:textSize="24sp" />
+
             <RadioButton
                 android:id="@+id/radiofemale"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="24sp"
-                android:text="Female"/>
+                android:text="Female"
+                android:textSize="24sp" />
         </RadioGroup>
 
 
-<com.google.android.material.button.MaterialButton
-    android:id="@+id/btnSubmit"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="submit"
-    android:layout_margin="20dp"/>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSubmit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:text="submit" />
+
         <TextView
             android:id="@+id/bmivalue"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="24sp"
+            android:hint="Your BMI is"
             android:textAlignment="center"
-            android:hint="Your BMI is"/>
+            android:textSize="24sp" />
+
         <TextView
             android:id="@+id/bmicategory"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="24sp"
+            android:hint="Your Category is"
             android:textAlignment="center"
-            android:hint="Your BMI is"/>
+            android:textSize="24sp" />
     </LinearLayout>
 </layout>

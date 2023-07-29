@@ -4,30 +4,30 @@ object convertingLogic {
     var UnitType = ""
     var fromData: Double = 0.0
     val AgeLimits = arrayOf(
-        "1 yr old", "2 yr old", "3 yr old", "4 yr old", "5 yr old",
-        "6 yr old", "7 yr old", "8 yr old", "9 yr old", "10 yr old",
-        "11 yr old", "12 yr old", "13 yr old", "14 yr old", "15 yr old",
-        "16 yr old", "17 yr old", "18 yr old", "19 yr old", "20 yr old",
-        "21 yr old", "22 yr old", "23 yr old", "24 yr old", "25 yr old",
-        "26 yr old", "27 yr old", "28 yr old", "29 yr old", "30 yr old",
-        "31 yr old", "32 yr old", "33 yr old", "34 yr old", "35 yr old",
-        "36 yr old", "37 yr old", "38 yr old", "39 yr old", "40 yr old",
-        "41 yr old", "42 yr old", "43 yr old", "44 yr old", "45 yr old",
-        "46 yr old", "47 yr old", "48 yr old", "49 yr old", "50 yr old",
-        "51 yr old", "52 yr old", "53 yr old", "54 yr old", "55 yr old",
-        "56 yr old", "57 yr old", "58 yr old", "59 yr old", "60 yr old",
-        "61 yr old", "62 yr old", "63 yr old", "64 yr old", "65 yr old",
-        "66 yr old", "67 yr old", "68 yr old", "69 yr old", "70 yr old",
-        "71 yr old", "72 yr old", "73 yr old", "74 yr old", "75 yr old",
-        "76 yr old", "77 yr old", "78 yr old", "79 yr old", "80 yr old",
-        "81 yr old", "82 yr old", "83 yr old", "84 yr old", "85 yr old",
-        "86 yr old", "87 yr old", "88 yr old", "89 yr old", "90 yr old",
-        "91 yr old", "92 yr old", "93 yr old", "94 yr old", "95 yr old",
-        "96 yr old", "97 yr old", "98 yr old", "99 yr old", "100 yr old",
-        "101 yr old", "102 yr old", "103 yr old", "104 yr old", "105 yr old",
-        "106 yr old", "107 yr old", "108 yr old", "109 yr old", "110 yr old",
-        "111 yr old", "112 yr old", "113 yr old", "114 yr old", "115 yr old",
-        "116 yr old", "117 yr old", "118 yr old", "119 yr old", "120 yr old"
+        "1", "2", "3", "4", "5",
+        "6", "7", "8", "9", "10",
+        "11", "12", "13", "14", "15",
+        "16", "17", "18", "19", "20",
+        "21", "22", "23", "24", "25",
+        "26", "27", "28", "29", "30",
+        "31", "32", "33", "34", "35",
+        "36", "37", "38", "39", "40",
+        "41", "42", "43", "44", "45",
+        "46", "47", "48", "49", "50",
+        "51", "52", "53", "54", "55",
+        "56", "57", "58", "59", "60",
+        "61", "62", "63", "64", "65",
+        "66", "67", "68", "69", "70",
+        "71", "72", "73", "74", "75",
+        "76", "77", "78", "79", "80",
+        "81", "82", "83", "84", "85",
+        "86", "87", "88", "89", "90",
+        "91", "92", "93", "94", "95",
+        "96", "97", "98", "99", "100",
+        "101", "102", "103", "104", "105",
+        "106", "107", "108", "109", "110",
+        "111", "112", "113", "114", "115",
+        "116", "117", "118", "119", "120"
     )
 
     val WeightUnits = arrayOf(
@@ -131,6 +131,34 @@ object convertingLogic {
     }
 
     //---------------------------------------
+
+    fun convertWeightToKilograms(weight: Double, weightunit: String): Double {
+        return when (weightunit) {
+            "kg" -> weight
+            "g" -> weight / 1000
+            "mg" -> weight / 1_000_000
+            "lb" -> weight * 0.453592
+            else -> throw IllegalArgumentException("Unsupported unit: $weightunit")
+        }
+    }
+
+    //---------------------------------------
+
+    fun convertLengthToCentimeters(length: Double, lengthunit: String): Double {
+        return when (lengthunit) {
+            "cm" -> length
+            "m" -> length * 100
+            "km" -> length * 100_000
+            "mm" -> length / 0.1
+            "in" -> length * 2.54
+            "ft" -> length * 30.48
+            "yd" -> length * 91.44
+            "mi" -> length * 160_934.4
+            else -> throw IllegalArgumentException("Unsupported unit: $lengthunit")
+        }
+    }
+    //---------------------------------------
+
 
     fun convertUnit(value: Double, fromUnit: String, toUnit: String): Double {
         val conversionFactors = mapOf(
@@ -433,6 +461,7 @@ object convertingLogic {
             value // If no conversion is found, return the original value
         }
     }
+
     //------------------------------------------------------------
     fun getUnitArray(unitType: String): Array<String> {
         return when (unitType) {

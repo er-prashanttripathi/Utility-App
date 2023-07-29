@@ -9,25 +9,23 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.example.utilityapplication.convertingLogic.fromData
+import com.example.utilityapplication.convertingLogic.convertLengthToCentimeters
+import com.example.utilityapplication.convertingLogic.convertWeightToKilograms
 import com.example.utilityapplication.convertingLogic.getUnitArray
+import com.example.utilityapplication.convertingLogic.unitsMap
 import com.example.utilityapplication.databinding.FragmentBmicalculatorfragmentBinding
 
 class BmiCalculatorFragment : Fragment() {
-    //    var fromData:Double=0.0
-    var unitTypeFrom = "length"
-    var unitTypeTo = "weight"
-    var unitTypeAge = "age"
-    var bmilength = 0.0
-    var bmiweight = 0.0
-    var bmiage:Int = 0
-    var bmigender:Boolean=true
-//    val bmi=""
-//    val category=""
 
-    var arrayType = ""
+    private var unitTypeFrom = "length"
+    private var unitTypeTo = "weight"
+    private var unitTypeAge = "age"
+    private var bmilength = 0.0
+    private var bmiweight = 0.0
+    private var bmiage: Int = 0
+    private var bmigender: Boolean = true
+
     private lateinit var binding: FragmentBmicalculatorfragmentBinding
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,131 +33,138 @@ class BmiCalculatorFragment : Fragment() {
     ): View? {
 
         binding = FragmentBmicalculatorfragmentBinding.inflate(inflater, container, false)
-//----------------------------------------------------
-
 
         val arrayAdapterFrom = ArrayAdapter(
             requireContext(),
             android.R.layout.simple_spinner_dropdown_item,
             getUnitArray(unitTypeFrom)
+                .toList() // Change Array<String> to List<String>
         )
         val arrayAdapterTo = ArrayAdapter(
             requireContext(),
             android.R.layout.simple_spinner_dropdown_item,
             getUnitArray(unitTypeTo)
+                .toList() // Change Array<String> to List<String>
         )
+
         val arrayAdapterAge = ArrayAdapter(
             requireContext(),
             android.R.layout.simple_spinner_dropdown_item,
             getUnitArray(unitTypeAge)
         )
+        binding.apply {
+            spinnerUnitFrom.adapter = arrayAdapterFrom
+            spinnerUnitTo.adapter = arrayAdapterTo
+            spinnerAge.adapter = arrayAdapterAge
 
+            spinnerUnitFrom.onItemSelectedListener =
+                object : AdapterView.OnItemSelectedListener {
+                    override fun onItemSelected(
+                        parent: AdapterView<*>?,
+                        view: View?,
+                        position: Int,
+                        id: Long
+                    ) {
+                        val selectedUnit = getUnitArray(unitTypeFrom)[position]
+                        edtLength.hint = selectedUnit
+                        Log.d("You clicked UnitFrom", "onItemSelected:$selectedUnit ")
+                    }
 
-        //---------------------------------------------------
-        binding.spinnerUnitFrom.adapter = arrayAdapterFrom
-        binding.spinnerUnitTo.adapter = arrayAdapterTo
-        binding.spinnerAge.adapter = arrayAdapterAge
+                    override fun onNothingSelected(parent: AdapterView<*>?) {
+                        // Empty implementation
+                    }
+                }
 
-
-        //---------------------------------------------------
-        binding.spinnerUnitFrom.onItemSelectedListener =
-            object : AdapterView.OnItemSelectedListener {
+            spinnerUnitTo.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(
                     parent: AdapterView<*>?,
                     view: View?,
                     position: Int,
                     id: Long
                 ) {
-                    val selectedUnit = getUnitArray(unitTypeFrom)[position]
-                    binding.edtLength.hint = selectedUnit
-                    Log.d("You clicked UnitFrom", "onItemSelected:$selectedUnit ")
-                }
-
-                override fun onNothingSelected(parent: AdapterView<*>?) {
-                    // Empty implementation
-                }
-            }
-
-        binding.spinnerUnitTo.onItemSelectedListener =
-            object : AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(
-                    parent: AdapterView<*>?,
-                    view: View?,
-                    position: Int,
-                    id: Long
-                ) {
-
                     val selectedUnit = getUnitArray(unitTypeTo)[position]
-                    binding.edtWeight.hint = selectedUnit
+                    edtWeight.hint = selectedUnit
                     Log.d("You clicked UnitTo", "onItemSelected:$selectedUnit")
                 }
-
 
                 override fun onNothingSelected(parent: AdapterView<*>?) {
                     // Empty implementation
                 }
             }
-        binding.spinnerAge.onItemSelectedListener =
-            object : AdapterView.OnItemSelectedListener {
+
+            spinnerAge.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(
                     parent: AdapterView<*>?,
                     view: View?,
                     position: Int,
                     id: Long
                 ) {
-
                     val selectedUnit = getUnitArray(unitTypeAge)[position]
-                    binding.edtAge.hint = selectedUnit
-                    Log.d("You clicked UnitTo", "onItemSelected:$selectedUnit")
+                    edtAge.text = selectedUnit
+                    Log.d("You clicked UnitAge", "onItemSelected:$selectedUnit")
                 }
-
 
                 override fun onNothingSelected(parent: AdapterView<*>?) {
                     // Empty implementation
                 }
             }
-//---------------------------------------------------
+            if (edtLength.text.toString() != null && edtWeight.text.toString() != null && edtAge.text.toString() != null ) {
+                btnSubmit.setOnClickListener {
+                    Toast.makeText(requireContext(), "Values filled", Toast.LENGTH_SHORT).show()
+                    bmilength = edtLength.text.toString().toDouble()
+                    bmiweight = edtWeight.text.toString().toDouble()
+                    bmiage = edtAge.text.toString().toInt()
+                    myradiogroup.setOnCheckedChangeListener { group, checkedId ->
+                        if (radiomale.isChecked) {
+                            bmigender = true
+                        } else {
+                            bmigender = false
+                        }
 
+                    }
 
-        binding.btnSubmit.setOnClickListener {
-            bmilength = binding.edtLength.text.toString().toDouble()
-            bmiweight = binding.edtWeight.text.toString().toDouble()
-            bmiage= binding.edtAge.text.toString().toInt()
-//            bmigender=binding.radiomale.
+                    val mto =
+                        unitsMap[getUnitArray(unitTypeTo)[spinnerUnitTo.selectedItemPosition]].toString()//weight
+                    val mfrom =
+                        unitsMap[getUnitArray(unitTypeFrom)[spinnerUnitFrom.selectedItemPosition]].toString()//length
+                    val mage = getUnitArray(unitTypeAge)[spinnerAge.selectedItemPosition].toInt()
 
-            if (fromData == 0.0) {
-                Toast.makeText(requireContext(), "Enter a valid number", Toast.LENGTH_SHORT).show()
-            } else {
-                 val UnitLength =
-                     getUnitArray(unitTypeFrom)[binding.spinnerUnitFrom.selectedItemPosition].toDouble()
-                 val UnitWeight = getUnitArray(unitTypeTo)[binding.spinnerUnitTo.selectedItemPosition].toDouble()
-                val UnitAge = getUnitArray(unitTypeTo)[binding.spinnerAge.selectedItemPosition].toInt()
-//                 val result = convertingLogic.resetUnits(fromData, UnitLength, UnitWeight)
-                     .toString()
-                 Log.d("You clicked Unit", "fromData:$UnitAge, fromUnit:$UnitLength, toUnit:$UnitWeight")
-                binding.apply {
+                    var nfrom = convertLengthToCentimeters(bmilength, mfrom)
+                    var nto = convertWeightToKilograms(bmiweight, mto)
 
-                    val bmi = calculateBMI(UnitWeight, UnitLength)
-                    val category = categorizeBMIForAge(bmi, UnitAge.toInt(), bmigender)
-                    binding.bmivalue.setText(bmi.toString())
-                    binding.bmicategory.setText(category.toString())
-                    Log.d("You clicked BMI", "BMI:$bmi, Category:$category,Category:$bmiage, Gender:$bmigender")
+                    var nbmi = calculateBMI(nto, nfrom)
+                    var nbmiage = categorizeBMIForAge(nbmi, mage, bmigender)
+                    bmivalue.text = nbmi.toString()
+                    bmicategory.text = nbmiage
+                    Log.d(
+                        "You clicked Submit",
+                        "onItemSelected:$bmilength $bmiweight $bmigender $mto $mfrom $mage $nto $nfrom $nbmi $nbmiage"
+                    )
                 }
-
-
             }
+            else {
+                Toast.makeText(requireContext(), "Enter all Fields", Toast.LENGTH_SHORT).show()
+            /*    if (edtLength.text.toString() == null) {
+                    edtLength.setError("Enter Length")
+                } else if (edtWeight.text.toString() == null) {
+                    edtWeight.setError("Enter Weight")
+                } else if (edtAge.text.toString() == null) {
+                    edtAge.setError("Enter Age")
+                }*/
+            }
+
+
+            return root
         }
 
-
-        return binding.root
     }
 
-    fun calculateBMI(weightKg: Double, heightCm: Double): Double {
+    private fun calculateBMI(weightKg: Double, heightCm: Double): Double {
         val heightMeters = heightCm / 100
         return weightKg / (heightMeters * heightMeters)
     }
 
-    fun categorizeBMIForAge(bmi: Double, ageYears: Int, isMale: Boolean): String {
+    private fun categorizeBMIForAge(bmi: Double, ageYears: Int, isMale: Boolean): String {
         return if (ageYears < 18) {
             categorizeBMIForChildrenAndAdolescents(bmi, ageYears, isMale)
         } else {
@@ -167,35 +172,41 @@ class BmiCalculatorFragment : Fragment() {
         }
     }
 
-    fun categorizeBMIForAdults(bmi: Double): String {
-        return when {
-            bmi < 18.5 -> "Underweight"
-            bmi >= 18.5 && bmi < 24.9 -> "Normal"
-            bmi >= 25 && bmi < 29.9 -> "Overweight"
-            else -> "Obesity"
-        }
-    }
-
-    fun categorizeBMIForChildrenAndAdolescents(
+    private fun categorizeBMIForChildrenAndAdolescents(
         bmi: Double,
         ageYears: Int,
         isMale: Boolean
     ): String {
-        // Use age-specific data (BMI percentiles) to categorize BMI for children and adolescents
-        // You would need to replace these placeholder values with age and sex-specific data.
-        val bmiPercentile = getBMIPercentileForAge(bmi, ageYears, isMale)
-
-        return when {
-            bmiPercentile < 5 -> "Underweight"
-            bmiPercentile >= 5 && bmiPercentile < 85 -> "Normal"
-            bmiPercentile >= 85 && bmiPercentile < 95 -> "Overweight"
-            else -> "Obesity"
+        // Categorization logic for BMI in children and adolescents (age < 18)
+        // Implement your own categorization logic based on age, gender, and BMI values
+        // For simplicity, let's use a simple categorization below:
+        val category: String
+        if (bmi < 18.5) {
+            category = "Underweight"
+        } else if (bmi < 24.9) {
+            category = "Normal weight"
+        } else if (bmi < 29.9) {
+            category = "Overweight"
+        } else {
+            category = "Obese"
         }
+        return category
     }
 
-    fun getBMIPercentileForAge(bmi: Double, ageYears: Int, isMale: Boolean): Double {
-        // Placeholder code, replace this with actual data from BMI percentiles chart
-        return 50.0
+    private fun categorizeBMIForAdults(bmi: Double): String {
+        // Categorization logic for BMI in adults (age >= 18)
+        // Implement your own categorization logic based on BMI values
+        // For simplicity, let's use a simple categorization below:
+        val category: String
+        if (bmi < 18.5) {
+            category = "Underweight"
+        } else if (bmi < 24.9) {
+            category = "Normal weight"
+        } else if (bmi < 29.9) {
+            category = "Overweight"
+        } else {
+            category = "Obese"
+        }
+        return category
     }
-
 }

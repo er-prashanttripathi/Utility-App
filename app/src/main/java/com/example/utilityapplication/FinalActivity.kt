@@ -21,7 +21,7 @@ class FinalActivity : AppCompatActivity() {
     val unitType = convertingLogic.UnitType
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding=DataBindingUtil.setContentView(this,R.layout.activity_final)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_final)
 
         val arrayAdapter = ArrayAdapter(
             this,
@@ -65,7 +65,6 @@ class FinalActivity : AppCompatActivity() {
                 }
 
 
-
                 override fun onNothingSelected(parent: AdapterView<*>?) {
                     // Empty implementation
                 }
@@ -75,11 +74,11 @@ class FinalActivity : AppCompatActivity() {
             fromData = binding.edtUnitFrom.text.toString().toDouble()
             if (fromData == 0.0) {
                 Toast.makeText(this, "Enter a valid number", Toast.LENGTH_SHORT).show()
-            }
-            else {
+            } else {
                 val fromUnit = getUnitArray(unitType)[binding.spinnerUnitFrom.selectedItemPosition]
                 val toUnit = getUnitArray(unitType)[binding.spinnerUnitTo.selectedItemPosition]
-                val result = convertingLogic.resetUnits(fromData, fromUnit, toUnit).toString()+ convertingLogic.unitsMap[toUnit].toString()
+                val result = convertingLogic.resetUnits(fromData, fromUnit, toUnit)
+                    .toString() + convertingLogic.unitsMap[toUnit].toString()
                 Log.d("You clicked Unit", "fromData:$fromData, fromUnit:$fromUnit, toUnit:$toUnit")
                 binding.edtUnitTo.setText(result.toString())
             }
