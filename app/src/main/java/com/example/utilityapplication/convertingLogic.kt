@@ -1,5 +1,7 @@
 package com.example.utilityapplication
 
+import android.widget.Toast
+
 object convertingLogic {
     var UnitType = ""
     var fromData: Double = 0.0
@@ -138,7 +140,8 @@ object convertingLogic {
             "g" -> weight / 1000
             "mg" -> weight / 1_000_000
             "lb" -> weight * 0.453592
-            else -> throw IllegalArgumentException("Unsupported unit: $weightunit")
+            "oz" -> weight * 0.0283495
+            else -> weight * 0
         }
     }
 
@@ -154,7 +157,7 @@ object convertingLogic {
             "ft" -> length * 30.48
             "yd" -> length * 91.44
             "mi" -> length * 160_934.4
-            else -> throw IllegalArgumentException("Unsupported unit: $lengthunit")
+            else -> length * 0
         }
     }
     //---------------------------------------

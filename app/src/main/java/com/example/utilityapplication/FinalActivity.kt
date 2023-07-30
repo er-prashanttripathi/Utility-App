@@ -71,15 +71,17 @@ class FinalActivity : AppCompatActivity() {
             }
 
         binding.btnSubmit.setOnClickListener {
-            fromData = binding.edtUnitFrom.text.toString().toDouble()
-            if (fromData == 0.0) {
-                Toast.makeText(this, "Enter a valid number", Toast.LENGTH_SHORT).show()
+            fromData = binding.edtUnitFrom.text.toString().toDoubleOrNull() ?: 0.0
+            if (fromData==0.0) {
+                Toast.makeText(this@FinalActivity, "Enter Value for conversion", Toast.LENGTH_SHORT)
+                    .show()
+
             } else {
                 val fromUnit = getUnitArray(unitType)[binding.spinnerUnitFrom.selectedItemPosition]
                 val toUnit = getUnitArray(unitType)[binding.spinnerUnitTo.selectedItemPosition]
                 val result = convertingLogic.resetUnits(fromData, fromUnit, toUnit)
-                    .toString() + convertingLogic.unitsMap[toUnit].toString()
-                Log.d("You clicked Unit", "fromData:$fromData, fromUnit:$fromUnit, toUnit:$toUnit")
+                    .toString() +" "+convertingLogic.unitsMap[toUnit].toString()
+                Log.d("You clicked Unit", "fromData:$fromData,toData:$result, fromUnit:$fromUnit, toUnit:$toUnit")
                 binding.edtUnitTo.setText(result.toString())
             }
         }

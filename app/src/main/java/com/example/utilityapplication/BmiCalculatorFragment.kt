@@ -108,12 +108,24 @@ class BmiCalculatorFragment : Fragment() {
                     // Empty implementation
                 }
             }
-            if (edtLength.text.toString() != null && edtWeight.text.toString() != null && edtAge.text.toString() != null ) {
-                btnSubmit.setOnClickListener {
+
+            btnSubmit.setOnClickListener {
+                if (binding.edtLength.text.isNullOrBlank() || binding.edtWeight.text.isNullOrBlank() || binding.edtAge.text.isNullOrBlank()) {
+                    Toast.makeText(requireContext(), "Please fill all fields", Toast.LENGTH_SHORT)
+                        .show()
+
+                }
+                else {
                     Toast.makeText(requireContext(), "Values filled", Toast.LENGTH_SHORT).show()
-                    bmilength = edtLength.text.toString().toDouble()
-                    bmiweight = edtWeight.text.toString().toDouble()
-                    bmiage = edtAge.text.toString().toInt()
+                    /*  bmilength = edtLength.text.toString().toDouble()
+                      bmiweight = edtWeight.text.toString().toDouble()
+                      bmiage = edtAge.text.toString().toInt()*/
+                    bmilength = binding.edtLength.text.toString().toDoubleOrNull() ?: 0.0
+                    bmiweight = binding.edtWeight.text.toString().toDoubleOrNull() ?: 0.0
+                    bmiage = binding.edtAge.text.toString().toIntOrNull() ?: 0
+                    // The ?: operator above provides a default value of 0.0 for the doubles and 0 for the integer if parsing fails.
+
+                    // ... (previous code remains the same)
                     myradiogroup.setOnCheckedChangeListener { group, checkedId ->
                         if (radiomale.isChecked) {
                             bmigender = true
@@ -141,17 +153,11 @@ class BmiCalculatorFragment : Fragment() {
                         "onItemSelected:$bmilength $bmiweight $bmigender $mto $mfrom $mage $nto $nfrom $nbmi $nbmiage"
                     )
                 }
+
             }
-            else {
-                Toast.makeText(requireContext(), "Enter all Fields", Toast.LENGTH_SHORT).show()
-            /*    if (edtLength.text.toString() == null) {
-                    edtLength.setError("Enter Length")
-                } else if (edtWeight.text.toString() == null) {
-                    edtWeight.setError("Enter Weight")
-                } else if (edtAge.text.toString() == null) {
-                    edtAge.setError("Enter Age")
-                }*/
-            }
+
+
+
 
 
             return root
