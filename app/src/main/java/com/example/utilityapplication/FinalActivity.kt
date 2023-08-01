@@ -32,6 +32,7 @@ class FinalActivity : AppCompatActivity() {
         binding.spinnerUnitFrom.adapter = arrayAdapter
         binding.spinnerUnitTo.adapter = arrayAdapter
 
+
         binding.spinnerUnitFrom.onItemSelectedListener =
             object : AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(

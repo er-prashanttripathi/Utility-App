@@ -2,4 +2,14 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="dgorange">#ea6d3e</color>
+    <color name="dgback">#202031</color>
+    <color name="bgpallet1">#dcdbde</color>
+    <color name="bgpallet12">#706e74</color>
+    <color name="bgpallet3">#93949d</color>
+    <color name="bgpallet4">#484849</color>
+    <color name="bgbtn1">#545469</color>
+    <color name="bgbth2">#8b8a9c</color>
+    <color name="bgpallet5">#585c5c</color>
+
 </resources>

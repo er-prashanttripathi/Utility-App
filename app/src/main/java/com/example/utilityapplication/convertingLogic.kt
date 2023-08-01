@@ -240,16 +240,16 @@ object convertingLogic {
             ),
             // Energy conversions---------------------------------------
             "J" to mapOf(
-                "kcal" to { x: Double -> x * 0.000239006 },
-                "cal" to { x: Double -> x * 0.239006 }
+                "kcal" to value * 0.000239006,
+                "cal" to value * 0.239006
             ),
             "kcal" to mapOf(
-                "J" to { x: Double -> x * 4184.0 },
-                "cal" to { x: Double -> x * 1000.0 }
+                "J" to value * 4184.0,
+                "cal" to value * 1000.0
             ),
             "cal" to mapOf(
-                "J" to { x: Double -> x * 4.184 },
-                "kcal" to { x: Double -> x * 0.001 }
+                "J" to value * 4.184,
+                "kcal" to value * 0.001
             ),
 
             // Weight conversions---------------------------------------
@@ -276,184 +276,184 @@ object convertingLogic {
 
             // Temperature conversions---------------------------------------
             "c" to mapOf(
-                "f" to { x: Double -> (x * 9 / 5) + 32 },
-                "k" to { x: Double -> x + 273.15 }
+                "f" to (value * 9 / 5) + 32,
+                "k" to value + 273.15
             ),
             "f" to mapOf(
-                "c" to { x: Double -> (x - 32) * 5 / 9 },
-                "k" to { x: Double -> (x + 459.67) * 5 / 9 }
+                "c" to ((value - 32) * 5) / 9,
+                "k" to ((value + 459.67) * 5) / 9
             ),
             "k" to mapOf(
-                "c" to { x: Double -> x - 273.15 },
-                "f" to { x: Double -> (x * 9 / 5) - 459.67 }
+                "c" to value - 273.15,
+                "f" to (value * 9 / 5) - 459.67
             ),
 
             // Volume conversions---------------------------------------
             "L" to mapOf(
-                "mL" to { x: Double -> x * 1000.0 },
-                "m³" to { x: Double -> x * 0.001 },
-                "cm³" to { x: Double -> x * 1000.0 },
-                "gal" to { x: Double -> x * 0.264172 },
-                "qt" to { x: Double -> x * 1.05669 },
-                "pt" to { x: Double -> x * 2.11338 },
-                "fl oz" to { x: Double -> x * 33.814 }
+                "mL" to value * 1000.0,
+                "m³" to value * 0.001,
+                "cm³" to value * 1000.0,
+                "gal" to value * 0.264172,
+                "qt" to value * 1.05669,
+                "pt" to value * 2.11338,
+                "fl oz" to value * 33.814
             ),
             "mL" to mapOf(
-                "L" to { x: Double -> x * 0.001 },
-                "m³" to { x: Double -> x * 1e-6 },
-                "cm³" to { x: Double -> x },
-                "gal" to { x: Double -> x * 0.000264172 },
-                "qt" to { x: Double -> x * 0.00105669 },
-                "pt" to { x: Double -> x * 0.00211338 },
-                "fl oz" to { x: Double -> x * 0.033814 }
+                "L" to value * 0.001,
+                "m³" to value * 1e-6,
+                "cm³" to value,
+                "gal" to value * 0.000264172,
+                "qt" to value * 0.00105669,
+                "pt" to value * 0.00211338,
+                "fl oz" to value * 0.033814
             ),
             "m³" to mapOf(
-                "L" to { x: Double -> x * 1000.0 },
-                "mL" to { x: Double -> x * 1e+6 },
-                "cm³" to { x: Double -> x * 1e+6 },
-                "gal" to { x: Double -> x * 264.172 },
-                "qt" to { x: Double -> x * 1056.69 },
-                "pt" to { x: Double -> x * 2113.38 },
-                "fl oz" to { x: Double -> x * 33814.0 }
+                "L" to value * 1000.0,
+                "mL" to value * 1e+6,
+                "cm³" to value * 1e+6,
+                "gal" to value * 264.172,
+                "qt" to value * 1056.69,
+                "pt" to value * 2113.38,
+                "fl oz" to value * 33814.0
             ),
             "cm³" to mapOf(
-                "L" to { x: Double -> x * 0.001 },
-                "mL" to { x: Double -> x },
-                "m³" to { x: Double -> x * 1e-6 },
-                "gal" to { x: Double -> x * 2.64172e-4 },
-                "qt" to { x: Double -> x * 1.05669e-3 },
-                "pt" to { x: Double -> x * 2.11338e-3 },
-                "fl oz" to { x: Double -> x * 3.3814e-2 }
+                "L" to value * 0.001,
+                "mL" to value,
+                "m³" to value * 1e-6,
+                "gal" to value * 2.64172e-4,
+                "qt" to value * 1.05669e-3,
+                "pt" to value * 2.11338e-3,
+                "fl oz" to value * 3.3814e-2
             ),
             "gal" to mapOf(
-                "L" to { x: Double -> x * 3.78541 },
-                "mL" to { x: Double -> x * 3785.41 },
-                "m³" to { x: Double -> x * 0.00378541 },
-                "cm³" to { x: Double -> x * 3785.41 },
-                "qt" to { x: Double -> x * 4.0 },
-                "pt" to { x: Double -> x * 8.0 },
-                "fl oz" to { x: Double -> x * 128.0 }
+                "L" to value * 3.78541,
+                "mL" to value * 3785.41,
+                "m³" to value * 0.00378541,
+                "cm³" to value * 3785.41,
+                "qt" to value * 4.0,
+                "pt" to value * 8.0,
+                "fl oz" to value * 128.0
             ),
             "qt" to mapOf(
-                "L" to { x: Double -> x * 0.946353 },
-                "mL" to { x: Double -> x * 946.353 },
-                "m³" to { x: Double -> x * 9.46353e-4 },
-                "cm³" to { x: Double -> x * 946.353 },
-                "gal" to { x: Double -> x * 0.25 },
-                "pt" to { x: Double -> x * 2.0 },
-                "fl oz" to { x: Double -> x * 32.0 }
+                "L" to value * 0.946353,
+                "mL" to value * 946.353,
+                "m³" to value * 9.46353e-4,
+                "cm³" to value * 946.353,
+                "gal" to value * 0.25,
+                "pt" to value * 2.0,
+                "fl oz" to value * 32.0
             ),
             "pt" to mapOf(
-                "L" to { x: Double -> x * 0.473176 },
-                "mL" to { x: Double -> x * 473.176 },
-                "m³" to { x: Double -> x * 4.73176e-4 },
-                "cm³" to { x: Double -> x * 473.176 },
-                "gal" to { x: Double -> x * 0.125 },
-                "qt" to { x: Double -> x * 0.5 },
-                "fl oz" to { x: Double -> x * 16.0 }
+                "L" to value * 0.473176,
+                "mL" to value * 473.176,
+                "m³" to value * 4.73176e-4,
+                "cm³" to value * 473.176,
+                "gal" to value * 0.125,
+                "qt" to value * 0.5,
+                "fl oz" to value * 16.0
             ),
             "fl oz" to mapOf(
-                "L" to { x: Double -> x * 0.0295735 },
-                "mL" to { x: Double -> x * 29.5735 },
-                "m³" to { x: Double -> x * 2.95735e-5 },
-                "cm³" to { x: Double -> x * 29.5735 },
-                "gal" to { x: Double -> x * 0.0078125 },
-                "qt" to { x: Double -> x * 0.03125 },
-                "pt" to { x: Double -> x * 0.0625 }
+                "L" to value * 0.0295735,
+                "mL" to value * 29.5735,
+                "m³" to value * 2.95735e-5,
+                "cm³" to value * 29.5735,
+                "gal" to value * 0.0078125,
+                "qt" to value * 0.03125,
+                "pt" to value * 0.0625
             ),
 
             //Area conversions---------------------------------------
             "m²" to mapOf(
-                "km²" to { x: Double -> x * 1e-6 },
-                "cm²" to { x: Double -> x * 10000.0 },
-                "in²" to { x: Double -> x * 1550.0031 },
-                "ft²" to { x: Double -> x * 10.7639 },
-                "ac" to { x: Double -> x * 0.000247105 },
-                "ha" to { x: Double -> x * 1e-4 }
+                "km²" to value * 1e-6,
+                "cm²" to value * 10000.0,
+                "in²" to value * 1550.0031,
+                "ft²" to value * 10.7639,
+                "ac" to value * 0.000247105,
+                "ha" to value * 1e-4
             ),
             "km²" to mapOf(
-                "m²" to { x: Double -> x * 1e+6 },
-                "cm²" to { x: Double -> x * 1e+10 },
-                "in²" to { x: Double -> x * 1.55e+9 },
-                "ft²" to { x: Double -> x * 1.076e+7 },
-                "ac" to { x: Double -> x * 247.105 },
-                "ha" to { x: Double -> x * 100.0 }
+                "m²" to value * 1e+6,
+                "cm²" to value * 1e+10,
+                "in²" to value * 1.55e+9,
+                "ft²" to value * 1.076e+7,
+                "ac" to value * 247.105,
+                "ha" to value * 100.0
             ),
             "cm²" to mapOf(
-                "m²" to { x: Double -> x * 1e-4 },
-                "km²" to { x: Double -> x * 1e-10 },
-                "in²" to { x: Double -> x * 0.155 },
-                "ft²" to { x: Double -> x * 0.00107639 },
-                "ac" to { x: Double -> x * 2.47105e-8 },
-                "ha" to { x: Double -> x * 1e-8 }
+                "m²" to value * 1e-4,
+                "km²" to value * 1e-10,
+                "in²" to value * 0.155,
+                "ft²" to value * 0.00107639,
+                "ac" to value * 2.47105e-8,
+                "ha" to value * 1e-8
             ),
             "in²" to mapOf(
-                "m²" to { x: Double -> x * 0.00064516 },
-                "km²" to { x: Double -> x * 6.4516e-10 },
-                "cm²" to { x: Double -> x * 6.4516 },
-                "ft²" to { x: Double -> x * 0.00694444 },
-                "ac" to { x: Double -> x * 1.5942e-7 },
-                "ha" to { x: Double -> x * 6.4516e-8 }
+                "m²" to value * 0.00064516,
+                "km²" to value * 6.4516e-10,
+                "cm²" to value * 6.4516,
+                "ft²" to value * 0.00694444,
+                "ac" to value * 1.5942e-7,
+                "ha" to value * 6.4516e-8
             ),
             "ft²" to mapOf(
-                "m²" to { x: Double -> x * 0.092903 },
-                "km²" to { x: Double -> x * 9.2903e-8 },
-                "cm²" to { x: Double -> x * 929.0304 },
-                "in²" to { x: Double -> x * 144.0 },
-                "ac" to { x: Double -> x * 2.2957e-5 },
-                "ha" to { x: Double -> x * 9.2903e-6 }
+                "m²" to value * 0.092903,
+                "km²" to value * 9.2903e-8,
+                "cm²" to value * 929.0304,
+                "in²" to value * 144.0,
+                "ac" to value * 2.2957e-5,
+                "ha" to value * 9.2903e-6
             ),
             "ac" to mapOf(
-                "m²" to { x: Double -> x * 4046.856 },
-                "km²" to { x: Double -> x * 4.046856e-6 },
-                "cm²" to { x: Double -> x * 4.046856e+7 },
-                "in²" to { x: Double -> x * 6.273e+6 },
-                "ft²" to { x: Double -> x * 43560.0 },
-                "ha" to { x: Double -> x * 0.404686 }
+                "m²" to value * 4046.856,
+                "km²" to value * 4.046856e-6,
+                "cm²" to value * 4.046856e+7,
+                "in²" to value * 6.273e+6,
+                "ft²" to value * 43560.0,
+                "ha" to value * 0.404686
             ),
             "ha" to mapOf(
-                "m²" to { x: Double -> x * 10000.0 },
-                "km²" to { x: Double -> x * 1e-4 },
-                "cm²" to { x: Double -> x * 1e+8 },
-                "in²" to { x: Double -> x * 1.55e+7 },
-                "ft²" to { x: Double -> x * 107639.0 },
-                "ac" to { x: Double -> x * 2.47105 }
+                "m²" to value * 10000.0,
+                "km²" to value * 1e-4,
+                "cm²" to value * 1e+8,
+                "in²" to value * 1.55e+7,
+                "ft²" to value * 107639.0,
+                "ac" to value * 2.47105
             ),
 
             // Speed conversions---------------------------------------
             "m/s" to mapOf(
-                "km/h" to { x: Double -> x * 3.6 },
-                "mph" to { x: Double -> x * 2.23694 }
+                "km/h" to value * 3.6,
+                "mph" to value * 2.23694
             ),
             "km/h" to mapOf(
-                "m/s" to { x: Double -> x * 0.277778 },
-                "mph" to { x: Double -> x * 0.621371 }
+                "m/s" to value * 0.277778,
+                "mph" to value * 0.621371
             ),
             "mph" to mapOf(
-                "m/s" to { x: Double -> x * 0.44704 },
-                "km/h" to { x: Double -> x * 1.60934 }
+                "m/s" to value * 0.44704,
+                "km/h" to value * 1.60934
             ),
 
             // Time conversions---------------------------------------
             "s" to mapOf(
-                "min" to { x: Double -> x / 60.0 },
-                "hr" to { x: Double -> x / 3600.0 },
-                "day" to { x: Double -> x / 86400.0 }
+                "min" to value / 60.0,
+                "hr" to value / 3600.0,
+                "day" to value / 86400.0
             ),
             "min" to mapOf(
-                "s" to { x: Double -> x * 60.0 },
-                "hr" to { x: Double -> x / 60.0 },
-                "day" to { x: Double -> x / 1440.0 }
+                "s" to value * 60.0,
+                "hr" to value / 60.0,
+                "day" to value / 1440.0
             ),
             "hr" to mapOf(
-                "s" to { x: Double -> x * 3600.0 },
-                "min" to { x: Double -> x * 60.0 },
-                "day" to { x: Double -> x / 24.0 }
+                "s" to value * 3600.0,
+                "min" to value * 60.0,
+                "day" to value / 24.0
             ),
             "day" to mapOf(
-                "s" to { x: Double -> x * 86400.0 },
-                "min" to { x: Double -> x * 1440.0 },
-                "hr" to { x: Double -> x * 24.0 }
+                "s" to value * 86400.0,
+                "min" to value * 1440.0,
+                "hr" to value * 24.0
             )
         )
 
@@ -463,6 +463,7 @@ object convertingLogic {
         } else {
             value // If no conversion is found, return the original value
         }
+
     }
 
     //------------------------------------------------------------
