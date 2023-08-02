@@ -42,7 +42,7 @@ class FinalActivity : AppCompatActivity() {
                     id: Long
                 ) {
                     val selectedUnit = getUnitArray(unitType)[position]
-                    binding.edtUnitFrom.hint = selectedUnit
+                    binding.edtUnitFrom.hint = unitsMap[selectedUnit].toString()
                     Log.d("You clicked UnitFrom", "onItemSelected:$selectedUnit ")
                 }
 
@@ -61,7 +61,7 @@ class FinalActivity : AppCompatActivity() {
                 ) {
 
                     val selectedUnit = getUnitArray(unitType)[position]
-                    binding.edtUnitTo.hint = selectedUnit
+                    binding.edtUnitTo.hint =  unitsMap[selectedUnit].toString()
                     Log.d("You clicked UnitTo", "onItemSelected:$selectedUnit")
                 }
 

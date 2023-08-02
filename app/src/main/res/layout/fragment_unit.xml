@@ -6,209 +6,211 @@
     <data>
 
     </data>
-<com.google.android.material.card.MaterialCardView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_margin="10dp"
-    app:cardElevation="10dp"
-    android:backgroundTint="@color/dgback"
-    app:cardCornerRadius="20dp">
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/unitparentconstraint"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".UnitFragment">
 
 
-        <androidx.constraintlayout.widget.Guideline
 
-            android:id="@+id/guidelinehorizontalmiddle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.5" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guidelinehorizontaltop"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.25" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guidelinevertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.5" />
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guidelinehorizontalbottom"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.75" />
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnlength"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:layout_marginHorizontal="10dp"
-            android:layout_marginTop="15dp"
-            android:text="Length"
-            app:iconGravity="top"
-            android:backgroundTint="#302f50"
-            app:iconSize="60dp"
-            app:icon="@drawable/ic_length"
-            android:textColor="#dcdbde"
-            app:iconTint="#dcdbde"
-            app:cornerRadius="20dp"
-            app:layout_constraintBottom_toTopOf="@id/guidelinehorizontaltop"
-
-            app:layout_constraintLeft_toLeftOf="@id/unitparentconstraint"
-            app:layout_constraintRight_toLeftOf="@id/guidelinevertical"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnweight"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:layout_marginHorizontal="10dp"
-            android:layout_marginTop="15dp"
-            android:text="Weight"
-            app:iconGravity="top"
-            android:backgroundTint="#302f50"
-            app:iconSize="60dp"
-            app:icon="@drawable/ic_weight"
-            android:textColor="#dcdbde"
-            app:iconTint="#dcdbde"
-            app:cornerRadius="20dp"
-            app:layout_constraintBottom_toTopOf="@id/guidelinehorizontaltop"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/unitparentconstraint"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".UnitFragment">
 
 
-            app:layout_constraintLeft_toRightOf="@id/guidelinevertical"
-            app:layout_constraintRight_toRightOf="@id/unitparentconstraint"
-            app:layout_constraintTop_toTopOf="parent" />
+            <androidx.constraintlayout.widget.Guideline
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btntemperature"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:layout_marginHorizontal="10dp"
-            android:layout_marginTop="15dp"
-            android:text="Thermal"
-            android:backgroundTint="#302f50"
-            app:iconGravity="top"
-            app:iconSize="60dp"
-            app:icon="@drawable/ic_temperature"
-            android:textColor="#dcdbde"
-            app:iconTint="#dcdbde"
-            app:cornerRadius="20dp"
-            app:layout_constraintBottom_toTopOf="@id/guidelinehorizontalmiddle"
+                android:id="@+id/guidelinehorizontalmiddle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.5" />
 
-            app:layout_constraintLeft_toLeftOf="@id/unitparentconstraint"
-            app:layout_constraintRight_toLeftOf="@id/guidelinevertical"
-            app:layout_constraintTop_toBottomOf="@id/guidelinehorizontaltop" />
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnvolume"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:layout_marginHorizontal="10dp"
-            android:layout_marginTop="15dp"
-            android:text="Volume"
-            app:iconGravity="top"
-            android:backgroundTint="#302f50"
-            app:iconSize="60dp"
-            app:icon="@drawable/ic_volume"
-            android:textColor="#dcdbde"
-            app:iconTint="#dcdbde"
-            app:cornerRadius="20dp"
-            app:layout_constraintBottom_toTopOf="@id/guidelinehorizontalmiddle"
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guidelinehorizontaltop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.25" />
 
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guidelinevertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.5" />
 
-            app:layout_constraintLeft_toRightOf="@id/guidelinevertical"
-            app:layout_constraintRight_toRightOf="@id/unitparentconstraint"
-            app:layout_constraintTop_toBottomOf="@id/guidelinehorizontaltop" />
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnarea"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:layout_marginHorizontal="10dp"
-            android:layout_marginTop="15dp"
-            android:text="Area"
-            app:iconGravity="top"
-            android:backgroundTint="#302f50"
-            app:iconSize="60dp"
-            app:icon="@drawable/ic_area"
-            android:textColor="#dcdbde"
-            app:iconTint="#dcdbde"
-            app:cornerRadius="20dp"
-            app:layout_constraintBottom_toTopOf="@id/guidelinehorizontalbottom"
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guidelinehorizontalbottom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.75" />
 
-            app:layout_constraintLeft_toLeftOf="@id/unitparentconstraint"
-            app:layout_constraintRight_toLeftOf="@id/guidelinevertical"
-            app:layout_constraintTop_toBottomOf="@id/guidelinehorizontalmiddle" />
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnspeed"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:layout_marginHorizontal="10dp"
-            android:layout_marginTop="15dp"
-            android:text="Speed"
-            app:iconGravity="top"
-            android:backgroundTint="#302f50"
-            app:iconSize="60dp"
-            app:icon="@drawable/ic_speed"
-            android:textColor="#dcdbde"
-            app:iconTint="#dcdbde"
-            app:cornerRadius="20dp"
-            app:layout_constraintBottom_toTopOf="@id/guidelinehorizontalbottom"
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnlength"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_margin="10dp"
+
+                android:backgroundTint="#302f50"
+                android:text="Length"
+                android:textColor="#dcdbde"
+                app:cornerRadius="20dp"
+                app:icon="@drawable/ic_length"
+                app:iconGravity="top"
+                app:iconSize="60dp"
+                app:iconTint="#dcdbde"
+                app:layout_constraintBottom_toTopOf="@id/guidelinehorizontaltop"
+
+                app:layout_constraintLeft_toLeftOf="@id/unitparentconstraint"
+                app:layout_constraintRight_toLeftOf="@id/guidelinevertical"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnweight"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_margin="10dp"
+
+                android:backgroundTint="#302f50"
+                android:text="Weight"
+                android:textColor="#dcdbde"
+                app:cornerRadius="20dp"
+                app:icon="@drawable/ic_weight"
+                app:iconGravity="top"
+                app:iconSize="60dp"
+                app:iconTint="#dcdbde"
+                app:layout_constraintBottom_toTopOf="@id/guidelinehorizontaltop"
 
 
-            app:layout_constraintLeft_toRightOf="@id/guidelinevertical"
-            app:layout_constraintRight_toRightOf="@id/unitparentconstraint"
-            app:layout_constraintTop_toBottomOf="@id/guidelinehorizontalmiddle" />
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btntime"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
+                app:layout_constraintLeft_toRightOf="@id/guidelinevertical"
+                app:layout_constraintRight_toRightOf="@id/unitparentconstraint"
+                app:layout_constraintTop_toTopOf="parent" />
 
-            android:layout_marginHorizontal="10dp"
-            android:layout_marginVertical="15dp"
-            android:text="Time"
-            app:iconGravity="top"
-            android:backgroundTint="#302f50"
-            app:iconSize="60dp"
-            app:icon="@drawable/ic_time"
-            android:textColor="#dcdbde"
-            app:iconTint="#dcdbde"
-            app:cornerRadius="20dp"
-            app:layout_constraintBottom_toBottomOf="@id/unitparentconstraint"
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btntemperature"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_margin="10dp"
 
-            app:layout_constraintLeft_toLeftOf="@id/unitparentconstraint"
-            app:layout_constraintRight_toLeftOf="@id/guidelinevertical"
-            app:layout_constraintTop_toBottomOf="@id/guidelinehorizontalbottom" />
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnenergy"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:layout_marginHorizontal="10dp"
-            android:layout_marginVertical="15dp"
-            android:text="Energy"
-            app:iconGravity="top"
-            android:backgroundTint="#302f50"
-            app:iconSize="60dp"
-            app:icon="@drawable/ic_energy"
-            android:textColor="#dcdbde"
-            app:iconTint="#dcdbde"
-            app:cornerRadius="20dp"
-            app:layout_constraintBottom_toBottomOf="@id/unitparentconstraint"
+                android:backgroundTint="#302f50"
+                android:text="Thermal"
+                android:textColor="#dcdbde"
+                app:cornerRadius="20dp"
+                app:icon="@drawable/ic_temperature"
+                app:iconGravity="top"
+                app:iconSize="60dp"
+                app:iconTint="#dcdbde"
+                app:layout_constraintBottom_toTopOf="@id/guidelinehorizontalmiddle"
+
+                app:layout_constraintLeft_toLeftOf="@id/unitparentconstraint"
+                app:layout_constraintRight_toLeftOf="@id/guidelinevertical"
+                app:layout_constraintTop_toBottomOf="@id/guidelinehorizontaltop" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnvolume"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_margin="10dp"
+
+                android:backgroundTint="#302f50"
+                android:text="Volume"
+                android:textColor="#dcdbde"
+                app:cornerRadius="20dp"
+                app:icon="@drawable/ic_volume"
+                app:iconGravity="top"
+                app:iconSize="60dp"
+                app:iconTint="#dcdbde"
+                app:layout_constraintBottom_toTopOf="@id/guidelinehorizontalmiddle"
 
 
-            app:layout_constraintLeft_toRightOf="@id/guidelinevertical"
-            app:layout_constraintRight_toRightOf="@id/unitparentconstraint"
-            app:layout_constraintTop_toBottomOf="@id/guidelinehorizontalbottom" />
+                app:layout_constraintLeft_toRightOf="@id/guidelinevertical"
+                app:layout_constraintRight_toRightOf="@id/unitparentconstraint"
+                app:layout_constraintTop_toBottomOf="@id/guidelinehorizontaltop" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</com.google.android.material.card.MaterialCardView>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnarea"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_margin="10dp"
+
+                android:backgroundTint="#302f50"
+                android:text="Area"
+                android:textColor="#dcdbde"
+                app:cornerRadius="20dp"
+                app:icon="@drawable/ic_area"
+                app:iconGravity="top"
+                app:iconSize="60dp"
+                app:iconTint="#dcdbde"
+                app:layout_constraintBottom_toTopOf="@id/guidelinehorizontalbottom"
+
+                app:layout_constraintLeft_toLeftOf="@id/unitparentconstraint"
+                app:layout_constraintRight_toLeftOf="@id/guidelinevertical"
+                app:layout_constraintTop_toBottomOf="@id/guidelinehorizontalmiddle" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnspeed"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_margin="10dp"
+
+                android:backgroundTint="#302f50"
+                android:text="Speed"
+                android:textColor="#dcdbde"
+                app:cornerRadius="20dp"
+                app:icon="@drawable/ic_speed"
+                app:iconGravity="top"
+                app:iconSize="60dp"
+                app:iconTint="#dcdbde"
+                app:layout_constraintBottom_toTopOf="@id/guidelinehorizontalbottom"
+
+
+                app:layout_constraintLeft_toRightOf="@id/guidelinevertical"
+                app:layout_constraintRight_toRightOf="@id/unitparentconstraint"
+                app:layout_constraintTop_toBottomOf="@id/guidelinehorizontalmiddle" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btntime"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+
+                android:layout_margin="10dp"
+                android:layout_marginVertical="15dp"
+                android:backgroundTint="#302f50"
+                android:text="Time"
+                android:textColor="#dcdbde"
+                app:cornerRadius="20dp"
+                app:icon="@drawable/ic_time"
+                app:iconGravity="top"
+                app:iconSize="60dp"
+                app:iconTint="#dcdbde"
+                app:layout_constraintBottom_toBottomOf="@id/unitparentconstraint"
+
+                app:layout_constraintLeft_toLeftOf="@id/unitparentconstraint"
+                app:layout_constraintRight_toLeftOf="@id/guidelinevertical"
+                app:layout_constraintTop_toBottomOf="@id/guidelinehorizontalbottom" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnenergy"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_margin="10dp"
+                android:layout_marginVertical="15dp"
+                android:backgroundTint="#302f50"
+                android:text="Energy"
+                android:textColor="#dcdbde"
+                app:cornerRadius="20dp"
+                app:icon="@drawable/ic_energy"
+                app:iconGravity="top"
+                app:iconSize="60dp"
+                app:iconTint="#dcdbde"
+                app:layout_constraintBottom_toBottomOf="@id/unitparentconstraint"
+
+
+                app:layout_constraintLeft_toRightOf="@id/guidelinevertical"
+                app:layout_constraintRight_toRightOf="@id/unitparentconstraint"
+                app:layout_constraintTop_toBottomOf="@id/guidelinehorizontalbottom" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </layout>
