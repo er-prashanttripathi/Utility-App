@@ -67,7 +67,7 @@ class BmiCalculatorFragment : Fragment() {
                     ) {
                         val selectedUnit = getUnitArray(unitTypeFrom)[position]
                         edtLength.hint = selectedUnit
-                        Log.d("You clicked UnitFrom", "onItemSelected:$selectedUnit ")
+                        Log.d("You clickked UnitFrom", "onItemSelected:$selectedUnit ")
                     }
 
                     override fun onNothingSelected(parent: AdapterView<*>?) {
