@@ -1,7 +1,16 @@
 package com.example.utilityapplication
 
+import android.Manifest
+import android.content.ContentValues
+import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.Canvas
 import android.graphics.Color
+import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.os.Environment
+import android.provider.MediaStore
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -9,12 +18,16 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import com.example.utilityapplication.convertingLogic.convertLengthToCentimeters
 import com.example.utilityapplication.convertingLogic.convertWeightToKilograms
 import com.example.utilityapplication.convertingLogic.getUnitArray
 import com.example.utilityapplication.convertingLogic.unitsMap
 import com.example.utilityapplication.databinding.FragmentBmicalculatorfragmentBinding
+import java.io.File
+import java.io.FileOutputStream
+import java.io.OutputStream
 import java.text.DecimalFormat
 
 class BmiCalculatorFragment : Fragment() {
@@ -157,17 +170,17 @@ class BmiCalculatorFragment : Fragment() {
                     var bmilefrom=(18.6*(bmilength/100)*(bmilength/100)).toFloat().toString()
                     var bmileto=(24.8*(bmilength/100)*(bmilength/100)).toFloat().toString()
                     txtidealweightvalue.text=(bmilefrom)+" to "+(bmileto)
-                    if (nbmi>18.4 && nbmi<25){
-                        bmivalue.setTextColor(Color.parseColor("#409E44"))
-                    }
-                    else{
-                        bmivalue.setTextColor(Color.parseColor("#F44336"))
-                    }
+
                     reportcard.visibility=View.VISIBLE
-                    Log.d(
-                        "You clicked Submit",
-                        "onItemSelected:$bmilength $bmiweight $bmigender $mto $mfrom $mage $nto $nfrom $nbmi $nbmiage"
-                    )
+                    requestStoragePermissions()
+                    val cardView = binding.reportcard
+                    val captureButton = binding.btnsaveasimage
+                    captureButton.setOnClickListener {
+                        val bitmap = takeScreenshot(cardView)
+                        if (bitmap != null) {
+                            saveScreenshotToGallery(bitmap,requireActivity())
+                        }
+                    }
                 }
 
             }
@@ -179,6 +192,61 @@ class BmiCalculatorFragment : Fragment() {
             return root
         }
 
+    }
+
+    private fun saveScreenshotToGallery(bitmap: Bitmap,context:Context) {
+        val filename = "${System.currentTimeMillis()}.jpg"
+        var fos: OutputStream? = null
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            context.contentResolver?.also { resolver ->
+                val contentValues = ContentValues().apply {
+                    put(MediaStore.MediaColumns.DISPLAY_NAME, filename)
+                    put(MediaStore.MediaColumns.MIME_TYPE, "image/jpg")
+                    put(MediaStore.MediaColumns.RELATIVE_PATH, Environment.DIRECTORY_PICTURES)
+                }
+                val imageUri: Uri? =
+                    resolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues)
+                fos = imageUri?.let { resolver.openOutputStream(it) }
+            }
+        } else {
+            val imagesDir =
+                Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
+            val image = File(imagesDir, filename)
+            fos = FileOutputStream(image)
+        }
+
+        fos?.use {
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, it)
+            Toast.makeText(requireActivity(), "Captured View and saved to Gallery", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun takeScreenshot(view: View): Bitmap? {
+        var screenshot: Bitmap? = null
+        try {
+            screenshot = Bitmap.createBitmap(
+                view.measuredWidth,
+                view.measuredHeight,
+                Bitmap.Config.ARGB_8888
+            )
+            val canvas = Canvas(screenshot)
+            view.draw(canvas)
+        } catch (e: Exception) {
+            Log.e("GFG", "Failed to capture screenshot because: ${e.message}")
+        }
+        return screenshot
+    }
+
+    private fun requestStoragePermissions() {
+        ActivityCompat.requestPermissions(
+            requireActivity(),
+            arrayOf(
+                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.READ_EXTERNAL_STORAGE
+            ),
+            1
+        )
     }
 
     private fun calculateBMI(weightKg: Double, heightCm: Double): Double {
