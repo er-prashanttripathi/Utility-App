@@ -1,5 +1,6 @@
 package com.example.utilityapplication
 
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -14,6 +15,7 @@ import com.example.utilityapplication.convertingLogic.convertWeightToKilograms
 import com.example.utilityapplication.convertingLogic.getUnitArray
 import com.example.utilityapplication.convertingLogic.unitsMap
 import com.example.utilityapplication.databinding.FragmentBmicalculatorfragmentBinding
+import java.text.DecimalFormat
 
 class BmiCalculatorFragment : Fragment() {
 
@@ -26,6 +28,8 @@ class BmiCalculatorFragment : Fragment() {
     private var bmigender: Boolean = true
 
     private lateinit var binding: FragmentBmicalculatorfragmentBinding
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -117,9 +121,7 @@ class BmiCalculatorFragment : Fragment() {
                 }
                 else {
                     Toast.makeText(requireContext(), "Values filled", Toast.LENGTH_SHORT).show()
-                    /*  bmilength = edtLength.text.toString().toDouble()
-                      bmiweight = edtWeight.text.toString().toDouble()
-                      bmiage = edtAge.text.toString().toInt()*/
+
                     bmilength = binding.edtLength.text.toString().toDoubleOrNull() ?: 0.0
                     bmiweight = binding.edtWeight.text.toString().toDoubleOrNull() ?: 0.0
                     bmiage = binding.edtAge.text.toString().toIntOrNull() ?: 0
@@ -148,6 +150,20 @@ class BmiCalculatorFragment : Fragment() {
                     var nbmiage = categorizeBMIForAge(nbmi, mage, bmigender)
                     bmivalue.text = nbmi.toString()
                     bmicategory.text = nbmiage
+                    txtbmivalue.text=nbmi.toFloat().toString()
+                    txtweightvalue.text=bmiweight.toString()
+                    txtheightvalue.text=bmilength.toString()
+                    txtidealbmivalue.text= "18.5 - 24.9"
+                    var bmilefrom=(18.6*(bmilength/100)*(bmilength/100)).toFloat().toString()
+                    var bmileto=(24.8*(bmilength/100)*(bmilength/100)).toFloat().toString()
+                    txtidealweightvalue.text=(bmilefrom)+" to "+(bmileto)
+                    if (nbmi>18.4 && nbmi<25){
+                        bmivalue.setTextColor(Color.parseColor("#409E44"))
+                    }
+                    else{
+                        bmivalue.setTextColor(Color.parseColor("#F44336"))
+                    }
+                    reportcard.visibility=View.VISIBLE
                     Log.d(
                         "You clicked Submit",
                         "onItemSelected:$bmilength $bmiweight $bmigender $mto $mfrom $mage $nto $nfrom $nbmi $nbmiage"

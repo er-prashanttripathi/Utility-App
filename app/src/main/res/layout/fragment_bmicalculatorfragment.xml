@@ -1,134 +1,328 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
     </data>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-
-        tools:context=".BmiCalculatorFragment">
-
-        <!-- TODO: Update blank fragment layout -->
-        <LinearLayout
-
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <Spinner
-                android:id="@+id/spinnerUnitFrom"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:spinnerMode="dialog" />
-
-            <EditText
-                android:id="@+id/edtLength"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:hint="input 1"
-                android:inputType="number" />
-        </LinearLayout>
+        android:layout_height="match_parent">
 
         <LinearLayout
+            android:paddingVertical="50dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.5"
+            tools:context=".BmiCalculatorFragment">
 
-            <Spinner
-                android:id="@+id/spinnerUnitTo"
-                android:layout_width="0dp"
+            <!-- TODO: Update blank fragment layout -->
+            <LinearLayout
+
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:spinnerMode="dialog"
-                android:prompt="@string/select_unit_from_prompt" />
+                android:orientation="horizontal">
 
-            <EditText
-                android:id="@+id/edtWeight"
-                android:layout_width="0dp"
+                <Spinner
+                    android:id="@+id/spinnerUnitFrom"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:spinnerMode="dialog" />
+
+                <EditText
+                    android:id="@+id/edtLength"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="input 1"
+                    android:inputType="number" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:hint="input 2"
-                android:inputType="number" />
-        </LinearLayout>
+                android:orientation="horizontal">
 
-        <LinearLayout
-            android:id="@+id/bmiagelayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+                <Spinner
+                    android:id="@+id/spinnerUnitTo"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:prompt="@string/select_unit_from_prompt"
+                    android:spinnerMode="dialog" />
 
-            <Spinner
-                android:id="@+id/spinnerAge"
-                android:layout_width="0dp"
+                <EditText
+                    android:id="@+id/edtWeight"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="input 2"
+                    android:inputType="number" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/bmiagelayout"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:spinnerMode="dialog"
-                />
+                android:orientation="horizontal">
+
+                <Spinner
+                    android:id="@+id/spinnerAge"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:spinnerMode="dialog" />
+
+                <TextView
+                    android:id="@+id/edtAge"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="input 1"
+                    android:inputType="number" />
+            </LinearLayout>
+
+            <RadioGroup
+                android:id="@+id/myradiogroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/radiomale"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Male"
+                    android:textSize="24sp" />
+
+                <RadioButton
+                    android:id="@+id/radiofemale"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Female"
+                    android:textSize="24sp" />
+            </RadioGroup>
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnSubmit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:text="submit" />
 
             <TextView
-                android:id="@+id/edtAge"
-                android:layout_width="0dp"
+                android:id="@+id/bmivalue"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:hint="input 1"
-                android:inputType="number" />
+                android:hint="Your BMI is"
+                android:textAlignment="center"
+                android:textColor="#302f50"
+                android:textColorHint="#302f50"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/bmicategory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Your Category is"
+                android:textAlignment="center"
+                android:textColor="#302f50"
+                android:textColorHint="#302f50"
+                android:textSize="24sp" />
         </LinearLayout>
 
-        <RadioGroup
-            android:id="@+id/myradiogroup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:orientation="horizontal">
-
-            <RadioButton
-                android:id="@+id/radiomale"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Male"
-                android:textSize="24sp" />
-
-            <RadioButton
-                android:id="@+id/radiofemale"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Female"
-                android:textSize="24sp" />
-        </RadioGroup>
-
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnSubmit"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/reportcard"
+            android:visibility="gone"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:text="submit" />
+            android:layout_height="match_parent"
+            app:cardCornerRadius="20dp"
+            android:layout_margin="10dp"
+            app:cardElevation="10dp">
 
-        <TextView
-            android:id="@+id/bmivalue"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Your BMI is"
-            android:textColor="#302f50"
-            android:textColorHint="#302f50"
-            android:textAlignment="center"
-            android:textSize="24sp" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cardlayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#CFC2C2">
 
-        <TextView
-            android:id="@+id/bmicategory"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Your Category is"
-            android:textColor="#302f50"
-            android:textColorHint="#302f50"
-            android:textAlignment="center"
-            android:textSize="24sp" />
-    </LinearLayout>
+                <TextView
+                    android:id="@+id/txtreport"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="Report"
+                    android:textAlignment="center"
+                    android:textSize="32dp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <View
+                    android:id="@+id/horizontalline"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/black"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/txtreport" />
+
+                <TextView
+                    android:id="@+id/txtbmi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="25dp"
+                    android:text="BMI :"
+                    android:textSize="24dp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/horizontalline" />
+
+                <TextView
+                    android:id="@+id/txtweight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="25dp"
+                    android:text="Your Weight :"
+                    android:textSize="24dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/txtbmi" />
+
+                <TextView
+                    android:id="@+id/txtheight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="25dp"
+                    android:text="Your Height :"
+                    android:textSize="24dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/txtweight" />
+
+                <TextView
+                    android:id="@+id/txtidealbmi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="25dp"
+
+                    android:text="Ideal BMI range for you:"
+                    android:textSize="24dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/txtheight" />
+
+                <TextView
+                    android:id="@+id/txtidealweight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="25dp"
+                    android:text="Ideal Weight range for you:"
+                    android:textSize="24dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/txtidealbmivalue" />
+
+                <TextView
+                    android:id="@+id/txtbmivalue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginEnd="15dp"
+                    android:text="Your BMI"
+                    android:textSize="24dp"
+
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/horizontalline" />
+
+                <TextView
+                    android:id="@+id/txtweightvalue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginEnd="15dp"
+                    android:text="Your Weight :"
+                    android:textSize="24dp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/txtbmi" />
+
+                <TextView
+                    android:id="@+id/txtheightvalue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginEnd="15dp"
+                    android:text="Your Height :"
+                    android:textSize="24dp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/txtweight" />
+
+                <TextView
+                    android:id="@+id/txtidealbmivalue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="25dp"
+                    android:text="Your BMI :"
+                    android:textSize="24dp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/txtidealbmi" />
+
+                <TextView
+                    android:id="@+id/txtidealweightvalue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="25dp"
+                    android:text="Your Height :"
+                    android:textSize="24dp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/txtidealweight" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:backgroundTint="#468E48"
+                    android:elevation="20dp"
+                    android:text="Save As Image"
+                    app:cornerRadius="5dp"
+                    app:elevation="20dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>
