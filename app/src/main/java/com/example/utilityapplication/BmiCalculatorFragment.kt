@@ -70,6 +70,9 @@ class BmiCalculatorFragment : Fragment() {
             getUnitArray(unitTypeAge)
         )
         binding.apply {
+            btnclosereport.setOnClickListener {
+                reportcard.visibility=View.INVISIBLE
+            }
             spinnerUnitFrom.adapter = arrayAdapterFrom
             spinnerUnitTo.adapter = arrayAdapterTo
             spinnerAge.adapter = arrayAdapterAge
@@ -133,7 +136,7 @@ class BmiCalculatorFragment : Fragment() {
 
                 }
                 else {
-                    Toast.makeText(requireContext(), "Values filled", Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(requireContext(), "Values filled", Toast.LENGTH_SHORT).show()
 
                     bmilength = binding.edtLength.text.toString().toDoubleOrNull() ?: 0.0
                     bmiweight = binding.edtWeight.text.toString().toDoubleOrNull() ?: 0.0
@@ -161,11 +164,20 @@ class BmiCalculatorFragment : Fragment() {
 
                     var nbmi = calculateBMI(nto, nfrom)
                     var nbmiage = categorizeBMIForAge(nbmi, mage, bmigender)
-                    bmivalue.text = nbmi.toString()
-                    bmicategory.text = nbmiage
+                /*    bmivalue.text = nbmi.toString()
+                    bmicategory.text = nbmiage*/
                     txtbmivalue.text=nbmi.toFloat().toString()
                     txtweightvalue.text=bmiweight.toString()
                     txtheightvalue.text=bmilength.toString()
+                    txtagetvalue.text=mage.toString()
+                    if (bmigender==true){
+                        txtgendertvalue.text="Male"
+                    }
+                    else{
+                        txtgendertvalue.text="Female"
+                    }
+
+
                     txtidealbmivalue.text= "18.5 - 24.9"
                     var bmilefrom=(18.6*(bmilength/100)*(bmilength/100)).toFloat().toString()
                     var bmileto=(24.8*(bmilength/100)*(bmilength/100)).toFloat().toString()

@@ -26,7 +26,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-
+                android:prompt="@string/select_unit_from_prompt"
 
                 />
 
@@ -55,7 +55,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:prompt="@string/select_unit_from_prompt" />
+                android:prompt="@string/select_unit_to_prompt" />
 
             <TextView
                 android:id="@+id/edtUnitTo"

@@ -12,18 +12,25 @@
         android:layout_height="match_parent">
 
         <LinearLayout
-            android:paddingVertical="50dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:paddingVertical="50dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.5"
             tools:context=".BmiCalculatorFragment">
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Enter your Height: -"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:layout_marginStart="10dp"
+                android:textStyle="bold" />
             <!-- TODO: Update blank fragment layout -->
             <LinearLayout
 
@@ -36,6 +43,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:prompt="@string/select_unit_height"
                     android:spinnerMode="dialog" />
 
                 <EditText
@@ -47,6 +55,15 @@
                     android:inputType="number" />
             </LinearLayout>
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Enter your Weight: -"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:layout_marginStart="10dp"
+                android:textStyle="bold" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -57,7 +74,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:prompt="@string/select_unit_from_prompt"
+                    android:prompt="@string/select_unit_weight"
                     android:spinnerMode="dialog" />
 
                 <EditText
@@ -68,6 +85,15 @@
                     android:hint="input 2"
                     android:inputType="number" />
             </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Enter your Age (in years): -"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:layout_marginStart="10dp"
+                android:textStyle="bold" />
 
             <LinearLayout
                 android:id="@+id/bmiagelayout"
@@ -80,6 +106,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:layout_marginStart="10dp"
+                    android:prompt="@string/select_unit_age"
                     android:spinnerMode="dialog" />
 
                 <TextView
@@ -90,6 +118,15 @@
                     android:hint="input 1"
                     android:inputType="number" />
             </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Enter your Gender: -"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:layout_marginStart="10dp"
+                android:textStyle="bold" />
 
             <RadioGroup
                 android:id="@+id/myradiogroup"
@@ -121,11 +158,12 @@
                 android:layout_margin="20dp"
                 android:text="submit" />
 
-            <TextView
+            <!--  <TextView
                 android:id="@+id/bmivalue"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Your BMI is"
+                android:visibility="invisible"
                 android:textAlignment="center"
                 android:textColor="#302f50"
                 android:textColorHint="#302f50"
@@ -136,15 +174,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Your Category is"
+                android:visibility="invisible"
                 android:textAlignment="center"
                 android:textColor="#302f50"
                 android:textColorHint="#302f50"
-                android:textSize="24sp" />
+                android:textSize="24sp" />-->
         </LinearLayout>
 
         <androidx.cardview.widget.CardView
             android:id="@+id/reportcard"
-            android:visibility="gone"
+            android:visibility="invisible"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:cardCornerRadius="20dp"
@@ -156,11 +195,21 @@
                 android:layout_height="match_parent"
                 android:background="#CFC2C2">
 
+                <ImageView
+                    android:id="@+id/btnclosereport"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:src="@drawable/baseline_cancel_24"
+                    app:layout_constraintBottom_toBottomOf="@+id/txtreport"
+                    app:layout_constraintEnd_toEndOf="@+id/txtreport"
+                    app:layout_constraintTop_toTopOf="parent"
+                   android:padding="20dp"/>
+
                 <TextView
                     android:id="@+id/txtreport"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="15dp"
                     android:text="Report"
                     android:textAlignment="center"
                     android:textSize="32dp"
@@ -187,7 +236,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
-                    android:layout_marginTop="25dp"
+                    android:layout_marginTop="15dp"
                     android:text="BMI :"
                     android:textSize="24dp"
                     android:textStyle="bold"
@@ -199,41 +248,60 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
-                    android:layout_marginTop="25dp"
+                    android:layout_marginTop="15dp"
                     android:text="Your Weight :"
                     android:textSize="24dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/txtbmi" />
+                
 
                 <TextView
                     android:id="@+id/txtheight"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
-                    android:layout_marginTop="25dp"
+                    android:layout_marginTop="15dp"
                     android:text="Your Height :"
                     android:textSize="24dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/txtweight" />
-
+                <TextView
+                    android:id="@+id/txtage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="15dp"
+                    android:text="Your Age :"
+                    android:textSize="24dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/txtheight" />
+                <TextView
+                    android:id="@+id/txtgender"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="15dp"
+                    android:text="Your Gender :"
+                    android:textSize="24dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/txtage" />
                 <TextView
                     android:id="@+id/txtidealbmi"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
-                    android:layout_marginTop="25dp"
-
+                    android:layout_marginTop="15dp"
                     android:text="Ideal BMI range for you:"
                     android:textSize="24dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/txtheight" />
+                    app:layout_constraintTop_toBottomOf="@id/txtgender" />
 
                 <TextView
                     android:id="@+id/txtidealweight"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
-                    android:layout_marginTop="25dp"
+                    android:layout_marginTop="15dp"
                     android:text="Ideal Weight range for you:"
                     android:textSize="24dp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -244,7 +312,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
-                    android:layout_marginTop="25dp"
+                    android:layout_marginTop="15dp"
                     android:layout_marginEnd="15dp"
                     android:text="Your BMI"
                     android:textSize="24dp"
@@ -258,7 +326,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
-                    android:layout_marginTop="25dp"
+                    android:layout_marginTop="15dp"
                     android:layout_marginEnd="15dp"
                     android:text="Your Weight :"
                     android:textSize="24dp"
@@ -271,20 +339,44 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
-                    android:layout_marginTop="25dp"
+                    android:layout_marginTop="15dp"
                     android:layout_marginEnd="15dp"
                     android:text="Your Height :"
                     android:textSize="24dp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/txtweight" />
+                <TextView
+                    android:id="@+id/txtagetvalue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:text="Your Age :"
+                    android:textSize="24dp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/txtheight" />
+                <TextView
+                    android:id="@+id/txtgendertvalue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:text="Your Gender :"
+                    android:textSize="24dp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/txtage" />
 
                 <TextView
                     android:id="@+id/txtidealbmivalue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
-                    android:layout_marginTop="25dp"
+                    android:layout_marginTop="15dp"
                     android:text="Your BMI :"
                     android:textSize="24dp"
                     android:textStyle="bold"
@@ -298,7 +390,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
-                    android:layout_marginTop="25dp"
+                    android:layout_marginTop="15dp"
                     android:text="Your Height :"
                     android:textSize="24dp"
                     android:textStyle="bold"
